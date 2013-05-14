@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Binary Search Trees &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Balanced Binary Search Trees" href="balanced.html" />
+    <link rel="prev" title="Priority Queues with Binary Heaps" href="heap.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="balanced.html" title="Balanced Binary Search Trees"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="heap.html" title="Priority Queues with Binary Heaps"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Binary Search Trees</a><ul>
+<li><a class="reference internal" href="#search-tree-operations">Search Tree Operations</a></li>
+<li><a class="reference internal" href="#search-tree-implementation">Search Tree Implementation</a></li>
+<li><a class="reference internal" href="#search-tree-analysis">Search Tree Analysis</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="heap.html"
+                        title="previous chapter">Priority Queues with Binary Heaps</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="balanced.html"
+                        title="next chapter">Balanced Binary Search Trees</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="binary-search-trees">
+<h1>Binary Search Trees<a class="headerlink" href="#binary-search-trees" title="Permalink to this headline">¶</a></h1>
+<p>We have already seen two different ways to get key-value pairs in a
+collection. Recall that these collections implement the <strong>map</strong> abstract
+data type. The two implementations of a map ADT we discussed were binary
+search on a list and hash tables. In this section we will study <strong>binary
+search trees</strong> as yet another way to map from a key to a value. In this
+case we are not interested in the exact placement of items in the tree,
+but we are interested in using the binary tree structure to provide for
+efficient searching.</p>
+<div class="section" id="search-tree-operations">
+<h2>Search Tree Operations<a class="headerlink" href="#search-tree-operations" title="Permalink to this headline">¶</a></h2>
+<p>Before we look at the implementation, let’s review the interface
+provided by the map ADT. You will notice that this interface is very
+similar to the Python dictionary.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">Map()</span></tt> Create a new, empty map.</li>
+<li><tt class="docutils literal"><span class="pre">put(key,val)</span></tt> Add a new key-value pair to the map. If the key is
+already in the map then replace the old value with the new value.</li>
+<li><tt class="docutils literal"><span class="pre">get(key)</span></tt> Given a key, return the value stored in the map or
+<tt class="docutils literal"><span class="pre">None</span></tt> otherwise.</li>
+<li><tt class="docutils literal"><span class="pre">del</span></tt> Delete the key-value pair from the map using a statement of
+the form <tt class="docutils literal"><span class="pre">del</span> <span class="pre">map[key]</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">len()</span></tt> Return the number of key-value pairs stored in the map.</li>
+<li><tt class="docutils literal"><span class="pre">in</span></tt> Return <tt class="docutils literal"><span class="pre">True</span></tt> for a statement of the form <tt class="docutils literal"><span class="pre">key</span> <span class="pre">in</span> <span class="pre">map</span></tt>, if
+the given key is in the map.</li>
+</ul>
+</div>
+<div class="section" id="search-tree-implementation">
+<h2>Search Tree Implementation<a class="headerlink" href="#search-tree-implementation" title="Permalink to this headline">¶</a></h2>
+<p>A binary search tree relies on the property that
+keys that are less than the parent are found in the left subtree, and
+keys that are greater than the parent are found in the right subtree. We
+will call this the <strong>bst property</strong>. As we implement the Map interface
+as described above, the bst property will guide our implementation.
+<a class="reference internal" href="#fig-simplebst"><em>Figure 1</em></a> illustrates this property of a binary search
+tree, showing the keys without any associated values. Notice that the
+property holds for each parent and child. All of the keys in the left
+subtree are less than the key in the root. All of the keys in the right
+subtree are greater than the root.</p>
+<div class="figure align-center" id="fig-simplebst">
+<img alt="../_images/simpleBST.png" src="../_images/simpleBST.png" />
+<p class="caption">A Simple Binary Search Tree</p>
+</div>
+<p>Now that you know what a binary search tree is, we will look at how a
+binary search tree is constructed. The search tree in
+<a class="reference internal" href="#fig-simplebst"><em>Figure 1</em></a> represents the nodes that exist after we have
+inserted the following keys in the order shown:
+<span class="math">\(70,31,93,94,14,23,73\)</span>. Since 70 was the first key inserted into
+the tree, it is the root. Next, 31 is less than 70, so it becomes the
+left child of 70. Next, 93 is greater than 70, so it becomes the right
+child of 70. Now we have two levels of the tree filled, so the next key
+is going to be the left or right child of either 31 or 93. Since 94 is
+greater than 70 and 93, it becomes the right child of 93. Similarly 14
+is less than 70 and 31, so it becomes the left child of 31. 23 is also
+less than 31, so it must be in the left subtree of 31. However, it is
+greater than 14, so it becomes the right child of 14.</p>
+<p>To implement the binary search tree, we will use the nodes and
+references approach similar to the one we used to implement the linked
+list, and the expression tree. However, because we must be able create
+and work with a binary search tree that is empty, our implementation
+will use two classes. The first class we will call <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>,
+and the second class we will call <tt class="docutils literal"><span class="pre">TreeNode</span></tt>. The <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>
+class has a reference to the <tt class="docutils literal"><span class="pre">TreeNode</span></tt> that is the root of the binary
+search tree. In most cases the external methods defined in the outer
+class simply check to see if the tree is empty. If there are nodes in
+the tree, the request is just passed on to a private method defined in
+the <tt class="docutils literal"><span class="pre">BinarySearch</span></tt> tree class that takes the root as a parameter. In
+the case where the tree is empty or we want to delete the key at the
+root of the tree, we must take special action. The code for the
+<tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> class constructor along with a few other
+miscellaneous functions is shown below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">TreeNode</span></tt> class provides many helper functions that make the work
+done in the <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> class methods much easier. The
+constructor for a <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, along with these helper functions, is
+shown in Listing&nbsp;{lst:bstInit}. As you can see in the listing many of
+these helper functions help to classify a node according to its own
+position as a child, (left or right) and the kind of children the node
+has.</p>
+<p>One big difference between the <tt class="docutils literal"><span class="pre">TreeNode</span></tt> class and the <tt class="docutils literal"><span class="pre">BinaryTree</span></tt>
+class from Section&nbsp;{sec:bintree} is that we will explicitly keep track
+of the parent as an attribute of each node. You will see why this is
+important when we discuss the implementation for the <tt class="docutils literal"><span class="pre">del</span></tt> operator.</p>
+<p>Another interesting aspect of the implementation of <tt class="docutils literal"><span class="pre">TreeNode</span></tt> in
+Listing&nbsp;{lst:bstInit} is that we use Python’s optional parameters.
+Optional parameters make it easy for us to create a <tt class="docutils literal"><span class="pre">TreeNode</span></tt> under
+several different circumstances. Sometimes we will want to construct a
+new <tt class="docutils literal"><span class="pre">TreeNode</span></tt> that already has both a <tt class="docutils literal"><span class="pre">parent</span></tt> and a <tt class="docutils literal"><span class="pre">child</span></tt>.
+With an existing parent and child, we can pass parent and child as
+parameters. At other times we will just create a <tt class="docutils literal"><span class="pre">TreeNode</span></tt> with the
+key value pair, and we will not pass any parameters for <tt class="docutils literal"><span class="pre">parent</span></tt> or
+<tt class="docutils literal"><span class="pre">child</span></tt>. In this case, the default values of the optional parameters
+are used.</p>
+<div class="highlight-python"><pre>class TreeNode:
+   def __init__(self,key,val,left=None,right=None,
+                                       parent=None):
+        self.key = key
+        self.payload = val
+        self.leftChild = left
+        self.rightChild = right
+        self.parent = parent
+
+    def hasLeftChild(self):
+        return self.leftChild
+
+    def hasRightChild(self):
+        return self.rightChild
+
+    def isLeftChild(self):
+        return self.parent and self.parent.leftChild == self
+
+    def isRightChild(self):
+        return self.parent and self.parent.rightChild == self
+
+    def isRoot(self):
+        return not self.parent
+
+    def isLeaf(self):
+        return not (self.rightChild or self.leftChild)
+
+    def hasAnyChildren(self):
+        return self.rightChild or self.leftChild
+
+    def hasBothChildren(self):
+        return self.rightChild and self.leftChild
+
+    def replaceNodeData(self,key,value,lc,rc):
+        self.key = key
+        self.payload = value
+        self.leftChild = lc
+        self.rightChild = rc
+        if self.hasLeftChild():
+            self.leftChild.parent = self
+        if self.hasRightChild():
+            self.rightChild.parent = self</pre>
+</div>
+<p>Now that we have the <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> shell and the <tt class="docutils literal"><span class="pre">TreeNode</span></tt> it
+is time to write the <tt class="docutils literal"><span class="pre">put</span></tt> method that will allow us to build our
+binary search tree. The <tt class="docutils literal"><span class="pre">put</span></tt> method is a method of the
+<tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> class. This method will check to see if the tree
+already has a root. If there is not a root then <tt class="docutils literal"><span class="pre">put</span></tt> will create a
+new <tt class="docutils literal"><span class="pre">TreeNode</span></tt> and install it as the root of the tree. If a root node
+is already in place then <tt class="docutils literal"><span class="pre">put</span></tt> calls the private, recursive, helper
+function <tt class="docutils literal"><span class="pre">_put</span></tt> to search the tree according to the following
+algorithm:</p>
+<ul class="simple">
+<li>Starting at the root of the tree, search the binary tree comparing
+the new key to the key in the current node. If the new key is less
+than the current node, search the left subtree. If the new key is
+greater than the current node, search the right subtree.</li>
+<li>When there is no left (or right) child to search, we have found the
+position in the tree where the new node should be installed.</li>
+<li>To add a node to the tree, create a new <tt class="docutils literal"><span class="pre">TreeNode</span></tt> object and
+insert the object at the point discovered in the previous step.</li>
+</ul>
+<p>The listing below shows the Python code for inserting a new node in
+the tree. The <tt class="docutils literal"><span class="pre">_put</span></tt> function is written recursively following the
+steps outlined above. Notice that when a new child is inserted into the
+tree, the <tt class="docutils literal"><span class="pre">currentNode</span></tt> is passed to the new tree as the parent.</p>
+<p>One important problem with our implementation of insert is that
+duplicate keys are not handled properly. As our tree is implemented a
+duplicate key will create a new node with the same key value in the
+right subtree of the node having the original key. The result of this is
+that the node with the new key will never be found during a search. A
+better way to handle the insertion of a duplicate key is for the value
+associated with the new key to replace the old value. We leave fixing
+this bug as an exercise for you.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">_put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">currentNode</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">hasLeftChild</span><span class="p">():</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+               <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">parent</span><span class="o">=</span><span class="n">currentNode</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">hasRightChild</span><span class="p">():</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+               <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">parent</span><span class="o">=</span><span class="n">currentNode</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With the <tt class="docutils literal"><span class="pre">put</span></tt> method defined, we can easily overload the <tt class="docutils literal"><span class="pre">[]</span></tt>
+operator for assignment by having the <tt class="docutils literal"><span class="pre">__setitem__</span></tt> method call the
+put method. This allows us to write Python statements like
+<tt class="docutils literal"><span class="pre">myZipTree['Plymouth']</span> <span class="pre">=</span> <span class="pre">55446</span></tt>, just like a Python dictionary.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#fig-bstput"><em>Figure 2</em></a> illustrates the process for inserting a new node
+into a binary search tree. The lightly shaded nodes indicate the nodes
+that were visited during the insertion process.</p>
+<div class="figure align-center" id="fig-bstput">
+<img alt="../_images/bstput.png" src="../_images/bstput.png" />
+<p class="caption">Inserting a Node with Key = 19</p>
+</div>
+<p>Once the tree is constructed, the next task is to implement the
+retrieval of a value for a given key. The <tt class="docutils literal"><span class="pre">get</span></tt> method is even easier
+than the <tt class="docutils literal"><span class="pre">put</span></tt> method because it simply searches the tree recursively
+until it gets to a non-matching leaf node or finds a matching key. When
+a matching key is found, the value stored in the payload of the node is
+returned.</p>
+<p>The following listing shows the code for <tt class="docutils literal"><span class="pre">get</span></tt>, <tt class="docutils literal"><span class="pre">_get</span></tt> and
+<tt class="docutils literal"><span class="pre">__getitem__</span></tt>. The search code in the <tt class="docutils literal"><span class="pre">_get</span></tt> method uses the same
+logic for choosing the left or right child as the <tt class="docutils literal"><span class="pre">_put</span></tt> method. Notice
+that the <tt class="docutils literal"><span class="pre">_get</span></tt> method returns a <tt class="docutils literal"><span class="pre">TreeNode</span></tt> to <tt class="docutils literal"><span class="pre">get</span></tt>, this allows
+<tt class="docutils literal"><span class="pre">_get</span></tt> to be used as a flexible helper method for other
+<tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> methods that may need to make use of other data
+from the <tt class="docutils literal"><span class="pre">TreeNode</span></tt> besides the payload.</p>
+<p>By implementing the <tt class="docutils literal"><span class="pre">__getitem__</span></tt> method we can write a Python
+statement that looks just like we are accessing a dictionary, when in
+fact we are using a binary search tree, for example
+<tt class="docutils literal"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">myZipTree['Fargo']}.</span>&nbsp; <span class="pre">As</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">see,</span> <span class="pre">all</span> <span class="pre">the</span> <span class="pre">``__getitem__</span></tt> method does is call
+<tt class="docutils literal"><span class="pre">get</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
+               <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">payload</span>
+        <span class="k">else</span><span class="p">:</span>
+               <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">currentNode</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">currentNode</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">elif</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">currentNode</span>
+    <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using <tt class="docutils literal"><span class="pre">get</span></tt>, we can implement the <tt class="docutils literal"><span class="pre">in</span></tt> operation by writing a
+<tt class="docutils literal"><span class="pre">__contains__</span></tt> method for the <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>. The
+<tt class="docutils literal"><span class="pre">__contains__</span></tt> method will simply call <tt class="docutils literal"><span class="pre">get</span></tt> and return <tt class="docutils literal"><span class="pre">True</span></tt>
+if <tt class="docutils literal"><span class="pre">get</span></tt> returns a value, or <tt class="docutils literal"><span class="pre">False</span></tt> if it returns <tt class="docutils literal"><span class="pre">None</span></tt>. The
+code for <tt class="docutils literal"><span class="pre">__contains__</span></tt> is shown below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<p>Recall that <tt class="docutils literal"><span class="pre">__contains__</span></tt> overloads the <tt class="docutils literal"><span class="pre">in</span></tt> operator and allows us
+to write statements such as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="s">&#39;Northfield&#39;</span> <span class="ow">in</span> <span class="n">myZipTree</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;oom ya ya&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we turn our attention to the most challenging method in the
+binary search tree, the deletion of a key. The first task is to find the
+node to delete by searching the tree. If the tree has more than one node
+we search using the <tt class="docutils literal"><span class="pre">_get</span></tt> method to find the <tt class="docutils literal"><span class="pre">TreeNode</span></tt> that needs
+to be removed. If the tree only has a single node, that means we are
+removing the root of the tree, but we still must check to make sure the
+key of the root matches the key that is to be deleted. In either case if
+the key is not found the <tt class="docutils literal"><span class="pre">del</span></tt> operator raises an error.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+   <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">nodeToRemove</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">nodeToRemove</span><span class="p">:</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">nodeToRemove</span><span class="p">)</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span>
+      <span class="k">else</span><span class="p">:</span>
+          <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&#39;Error, key not in tree&#39;</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">None</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+   <span class="k">else</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&#39;Error, key not in tree&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once we’ve found the node containing the key we want to delete, there
+are three cases that we must consider:</p>
+<ol class="arabic simple">
+<li>The node to be deleted has no children (see <a class="reference internal" href="#fig-bstdel1"><em>Figure 3</em></a>).</li>
+<li>The node to be deleted has only one child (see <a class="reference internal" href="#fig-bstdel2"><em>Figure 4</em></a>).</li>
+<li>The node to be deleted has two children (see <a class="reference internal" href="#fig-bstdel3"><em>Figure 5</em></a>).</li>
+</ol>
+<p>The first case is straightforward. If the current node has no children
+all we need to do is delete the node and remove the reference to this
+node in the parent. The code for this case is shown in here.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">currentNode</span> <span class="o">==</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span><span class="p">:</span>
+        <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="fig-bstdel1">
+<img alt="../_images/bstdel1.png" src="../_images/bstdel1.png" />
+<p class="caption">Deleting Node 16, a Node without Children</p>
+</div>
+<p>The second case is only slightly more complicated. If a node has only a
+single child, then we can simply promote the child to take the place of
+its parent. The code for this case is shown in the next listing. As
+you look at this code you will see that there are six cases to consider.
+Since the cases are symmetric with respect to either having a left or
+right child we will just discuss the case where the current node has a
+left child. The decision proceeds as follows:</p>
+<ol class="arabic simple">
+<li>If the current node is a left child then we only need to update the
+parent reference of the left child to point to the parent of the
+current node, and then update the left child reference of the parent
+to point to the current node’s left child.</li>
+<li>If the current node is a right child then we only need to update the
+parent reference of the right child to point to the parent of the
+current node, and then update the right child reference of the parent
+to point to the current node’s right child.</li>
+<li>If the current node has no parent, it must be the root. In this case
+we will just replace the <tt class="docutils literal"><span class="pre">key</span></tt>, <tt class="docutils literal"><span class="pre">payload</span></tt>, <tt class="docutils literal"><span class="pre">leftChild</span></tt>, and
+<tt class="docutils literal"><span class="pre">rightChild</span></tt> data by calling the <tt class="docutils literal"><span class="pre">replaceNodeData</span></tt> method on the
+root.</li>
+</ol>
+<div class="highlight-python"><pre>else: # this node has one child
+   if currentNode.hasLeftChild():
+      if currentNode.isLeftChild():
+          currentNode.leftChild.parent = currentNode.parent
+          currentNode.parent.leftChild = currentNode.leftChild
+      elif currentNode.isRightChild():
+          currentNode.leftChild.parent = currentNode.parent
+          currentNode.parent.rightChild = currentNode.leftChild
+      else:
+          currentNode.replaceNodeData(currentNode.leftChild.key,
+                             currentNode.leftChild.payload,
+                             currentNode.leftChild.leftChild,
+                             currentNode.leftChild.rightChild)
+   else:
+      if currentNode.isLeftChild():
+          currentNode.rightChild.parent = currentNode.parent
+          currentNode.parent.leftChild = currentNode.rightChild
+      elif currentNode.isRightChild():
+          currentNode.rightChild.parent = currentNode.parent
+          currentNode.parent.rightChild = currentNode.rightChild
+      else:
+          currentNode.replaceNodeData(currentNode.rightChild.key,
+                             currentNode.rightChild.payload,
+                             currentNode.rightChild.leftChild,
+                             currentNode.rightChild.rightChild)</pre>
+</div>
+<div class="figure align-center" id="fig-bstdel2">
+<img alt="../_images/bstdel2.png" src="../_images/bstdel2.png" />
+<p class="caption">Deleting Node 25, a Node That Has a Single Child</p>
+</div>
+<p>The third case is the most difficult case to handle. If a node has two
+children, then it is unlikely that we can simply promote one of them to
+take the node’s place. We can, however, search the tree for a node that
+can be used to replace the one scheduled for deletion. What we need is a
+node that will preserve the binary search tree relationships for both of
+the existing left and right subtrees. The node that will do this is the
+node that has the next-largest key in the tree. We call this node the
+<strong>successor</strong>, and we will look at a way to find the successor shortly.
+The successor is guaranteed to have no more than one child, so we know
+how to remove it using the two cases for deletion that we have already
+implemented. Once the successor has been removed, we simply put it in
+the tree in place of the node to be deleted.</p>
+<div class="figure align-center" id="fig-bstdel3">
+<img alt="../_images/bstdel3.png" src="../_images/bstdel3.png" />
+<p class="caption">Deleting Node 5, a Node with Two Children</p>
+</div>
+<p>The code to handle the third case is shown in the next listing.
+Notice that we make use of the helper methods <tt class="docutils literal"><span class="pre">findSuccessor</span></tt> and
+<tt class="docutils literal"><span class="pre">findMin</span></tt> to find the successor. To remove the successor, we make use
+of the method <tt class="docutils literal"><span class="pre">spliceOut</span></tt>. The reason we use <tt class="docutils literal"><span class="pre">spliceOut</span></tt> is that it
+goes directly to the node we want to splice out and makes the right
+changes. We could call <tt class="docutils literal"><span class="pre">delete</span></tt> recursively, but then we would waste
+time re-searching for the key node.</p>
+<div class="highlight-python"><pre>elif currentNode.hasBothChildren(): #interior
+        succ = currentNode.findSuccessor()
+        succ.spliceOut()
+        currentNode.key = succ.key
+        currentNode.payload = succ.payload</pre>
+</div>
+<p>The code to find the successor is shown below and as
+you can see is a method of the <tt class="docutils literal"><span class="pre">TreeNode</span></tt> class. This code makes use
+of the same properties of binary search trees that cause an inorder
+traversal to print out the nodes in the tree from smallest to largest.
+There are three cases to consider when looking for the successor:</p>
+<ol class="arabic simple">
+<li>If the node has a right child, then the successor is the smallest key
+in the right subtree.</li>
+<li>If the node has no right child and is the left child of its parent,
+then the parent is the successor.</li>
+<li>If the node is the right child of its parent, and itself has no right
+child, then the successor to this node is the successor of its
+parent, excluding this node.</li>
+</ol>
+<p>The first condition is the only one that matters for us when deleting a
+node from a binary search tree. However, the <tt class="docutils literal"><span class="pre">findSuccessor</span></tt> method
+has other uses that we will explore in the exercises at the end of this
+chapter.</p>
+<p>The <tt class="docutils literal"><span class="pre">findMin</span></tt> method is called to find the minimum key in a subtree.
+You should convince yourself that the minimum valued key in any binary
+search tree is the leftmost child of the tree. Therefore the <tt class="docutils literal"><span class="pre">findMin</span></tt>
+method simply follows the <tt class="docutils literal"><span class="pre">leftChild</span></tt> references in each node of the
+subtree until it reaches a node that does not have a left child.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">findSuccessor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">succ</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasRightChild</span><span class="p">():</span>
+        <span class="n">succ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">findMin</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+               <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isLeftChild</span><span class="p">():</span>
+                   <span class="n">succ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+               <span class="k">else</span><span class="p">:</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">None</span>
+                   <span class="n">succ</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">findSuccessor</span><span class="p">()</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">self</span>
+    <span class="k">return</span> <span class="n">succ</span>
+
+<span class="k">def</span> <span class="nf">findMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span>
+    <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="n">hasLeftChild</span><span class="p">():</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">leftChild</span>
+    <span class="k">return</span> <span class="n">current</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">spliceOut</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">():</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isLeftChild</span><span class="p">():</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasAnyChildren</span><span class="p">():</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasLeftChild</span><span class="p">():</span>
+               <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isLeftChild</span><span class="p">():</span>
+                  <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leftChild</span>
+               <span class="k">else</span><span class="p">:</span>
+                  <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leftChild</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">leftChild</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+        <span class="k">else</span><span class="p">:</span>
+               <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isLeftChild</span><span class="p">():</span>
+                  <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rightChild</span>
+               <span class="k">else</span><span class="p">:</span>
+                  <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rightChild</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
+</pre></div>
+</div>
+<p>The
+complete listing for <tt class="docutils literal"><span class="pre">delete</span></tt> is given here for additional clarity.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">currentNode</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">():</span> <span class="c">#leaf</span>
+    <span class="k">if</span> <span class="n">currentNode</span> <span class="o">==</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span><span class="p">:</span>
+        <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">None</span>
+  <span class="k">elif</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">hasBothChildren</span><span class="p">():</span> <span class="c">#interior</span>
+    <span class="n">succ</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">findSuccessor</span><span class="p">()</span>
+    <span class="n">succ</span><span class="o">.</span><span class="n">spliceOut</span><span class="p">()</span>
+    <span class="n">currentNode</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">succ</span><span class="o">.</span><span class="n">key</span>
+    <span class="n">currentNode</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">succ</span><span class="o">.</span><span class="n">payload</span>
+
+  <span class="k">else</span><span class="p">:</span> <span class="c"># this node has one child</span>
+    <span class="k">if</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">hasLeftChild</span><span class="p">():</span>
+      <span class="k">if</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">isLeftChild</span><span class="p">():</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span>
+      <span class="k">elif</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">isRightChild</span><span class="p">():</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span>
+      <span class="k">else</span><span class="p">:</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">replaceNodeData</span><span class="p">(</span><span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+                             <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
+                             <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="o">.</span><span class="n">leftChild</span><span class="p">,</span>
+                             <span class="n">currentNode</span><span class="o">.</span><span class="n">leftChild</span><span class="o">.</span><span class="n">rightChild</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">isLeftChild</span><span class="p">():</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">leftChild</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span>
+      <span class="k">elif</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">isRightChild</span><span class="p">():</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span>
+      <span class="k">else</span><span class="p">:</span>
+          <span class="n">currentNode</span><span class="o">.</span><span class="n">replaceNodeData</span><span class="p">(</span><span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+                             <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
+                             <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">leftChild</span><span class="p">,</span>
+                             <span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="o">.</span><span class="n">rightChild</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We need to look at one last interface method for the binary search tree.
+Suppose that we would like to simply iterate over all the keys in the
+tree in order. This is definitely something we have done with
+dictionaries, so why not trees? You already know how to traverse a
+binary tree in order, using the <tt class="docutils literal"><span class="pre">inorder</span></tt> traversal algorithm.
+However, writing an iterator requires a bit more work, since an iterator
+should return only one node each time the iterator is called.</p>
+<p>Python provides us with a very powerful function to use when creating an
+iterator. The function is called <tt class="docutils literal"><span class="pre">yield</span></tt>. <tt class="docutils literal"><span class="pre">yield</span></tt> is similar to
+<tt class="docutils literal"><span class="pre">return</span></tt> in that it returns a value to the caller. However, <tt class="docutils literal"><span class="pre">yield</span></tt>
+also takes the additional step of freezing the state of the function so
+that the next time the function is called it continues executing from
+the exact point it left off earlier. Functions that create objects that
+can be iterated are called generator functions.</p>
+<p>The code for an <tt class="docutils literal"><span class="pre">inorder</span></tt> iterator of a binary tree is shown in the next
+listing. Look at this code carefully; at first glance you
+might think that the code is not recursive. However, remember that
+<tt class="docutils literal"><span class="pre">__iter__</span></tt> overrides the <tt class="docutils literal"><span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span></tt> operation for iteration, so it
+really is recursive! Because it is recursive over <tt class="docutils literal"><span class="pre">TreeNode</span></tt> instances
+the <tt class="docutils literal"><span class="pre">__iter__</span></tt> method is defined in the <tt class="docutils literal"><span class="pre">TreeNode</span></tt> class.</p>
+<div class="highlight-python"><pre>def __iter__(self):
+   if self:
+      if self.hasLeftChild():
+             for elem in self.leftChiLd:
+                yield elem
+         yield self.key
+      if self.hasRightChild():
+             for elem in self.rightChild:
+                yield elem</pre>
+</div>
+<p>At this point you may want to download the entire file containing the
+full version of the <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> and <tt class="docutils literal"><span class="pre">TreeNode</span></tt> classes. You
+can find this file (bst.py) on the support web site for this book at
+<tt class="docutils literal"><span class="pre">www.pythonworks.org</span></tt>.</p>
+</div>
+<div class="section" id="search-tree-analysis">
+<h2>Search Tree Analysis<a class="headerlink" href="#search-tree-analysis" title="Permalink to this headline">¶</a></h2>
+<p>With the implementation of a binary search tree now complete, we will do
+a quick analysis of the methods we have implemented. Let’s first look at
+the <tt class="docutils literal"><span class="pre">put</span></tt> method. The limiting factor on its performance is the height
+of the binary tree. Recall from the vocabulary section that the height
+of a tree is the number of edges between the root and the deepest leaf
+node. The height is the limiting factor because when we are searching
+for the appropriate place to insert a node into the tree, we will need
+to do at most one comparison at each level of the tree.</p>
+<p>What is the height of a binary tree likely to be? The answer to this
+question depends on how the keys are added to the tree. If the keys are
+added in a random order, the height of the tree is going to be around
+<span class="math">\(\log_2{n}\)</span> where <span class="math">\(n\)</span> is the number of nodes in the
+tree. This is because if the keys are randomly distributed, about half
+of them will be less than the root and half will be greater than the
+root. Remember that in a binary tree there is one node at the root, two
+nodes in the next level, and four at the next. The number of nodes at
+any particular level is <span class="math">\(2^d\)</span> where <span class="math">\(d\)</span> is the depth of
+the level. The total number of nodes in a perfectly balanced binary tree
+is <span class="math">\(2^{h+1}-1\)</span>, where <span class="math">\(h\)</span> represents the height of the
+tree.</p>
+<p>A perfectly balanced tree has the same number of nodes in the left
+subtree as the right subtree. In a balanced binary tree, the worst-case
+performance of <tt class="docutils literal"><span class="pre">put</span></tt> is <span class="math">\(O(\log_2{n})\)</span>, where <span class="math">\(n\)</span> is
+the number of nodes in the tree. Notice that this is the inverse
+relationship to the calculation in the previous paragraph. So
+<span class="math">\(\log_2{n}\)</span> gives us the height of the tree, and represents the
+maximum number of comparisons that <tt class="docutils literal"><span class="pre">put</span></tt> will need to do as it
+searches for the proper place to insert a new node.</p>
+<p>Unfortunately it is possible to construct a search tree that has height
+<span class="math">\(n\)</span> simply by inserting the keys in sorted order! An example of
+such a tree is shown in <a class="reference internal" href="#fig-skewedtree-analysis"><em>Figure 6</em></a>. In this case the
+performance of the <tt class="docutils literal"><span class="pre">put</span></tt> method is <span class="math">\(O(n)\)</span>.</p>
+<div class="figure align-center" id="fig-skewedtree-analysis">
+<img alt="../_images/skewedTree.png" src="../_images/skewedTree.png" />
+<p class="caption">A skewed binary search tree would give poor performance</p>
+</div>
+<p>Now that you understand that the performance of
+the <tt class="docutils literal"><span class="pre">put</span></tt> method is limited by the height of the tree, you can
+probably guess that other methods, <tt class="docutils literal"><span class="pre">get,</span> <span class="pre">in,</span></tt> and <tt class="docutils literal"><span class="pre">del</span></tt>, are limited
+as well. Since <tt class="docutils literal"><span class="pre">get</span></tt> searches the tree to find the key, in the worst
+case the tree is searched all the way to the bottom and no key is found.
+At first glance <tt class="docutils literal"><span class="pre">del</span></tt> might seem more complicated, since it may need
+to search for the successor before the deletion operation can complete.
+But remember that the worst-case scenario to find the successor is also
+just the height of the tree which means that you would simply double the
+work. Since doubling is a constant factor it does not change worst case
+analysis of <span class="math">\(O(n)\)</span> for an unbalanced tree.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="balanced.html" title="Balanced Binary Search Trees"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="heap.html" title="Priority Queues with Binary Heaps"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>

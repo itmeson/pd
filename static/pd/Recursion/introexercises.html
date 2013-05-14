@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Glossary &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Classes and Objects - the Basics" href="../Classes/classesintro.html" />
+    <link rel="prev" title="Visualizing Recursion" href="graphical.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Classes/classesintro.html" title="Classes and Objects - the Basics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="graphical.html" title="Visualizing Recursion"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Glossary</a></li>
+<li><a class="reference internal" href="#programming-exercises">Programming Exercises</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="graphical.html"
+                        title="previous chapter">Visualizing Recursion</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Classes/classesintro.html"
+                        title="next chapter">Classes and Objects - the Basics</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<dl class="glossary docutils">
+<dt id="term-base-case">base case</dt>
+<dd>A branch of the conditional statement in a recursive function that does
+not give rise to further recursive calls.</dd>
+<dt id="term-immutable-data-type">immutable data type</dt>
+<dd>A data type which cannot be modified.  Assignments to elements or
+slices of immutable types cause a runtime error.</dd>
+<dt id="term-infinite-recursion">infinite recursion</dt>
+<dd>A function that calls itself recursively without ever reaching the base
+case. Eventually, an infinite recursion causes a runtime error.</dd>
+<dt id="term-mutable-data-type">mutable data type</dt>
+<dd>A data type which can be modified. All mutable types are compound
+types.  Lists and dictionaries (see next chapter) are mutable data
+types; strings and tuples are not.</dd>
+<dt id="term-recursion">recursion</dt>
+<dd>The process of calling the function that is already executing.</dd>
+<dt id="term-recursive-call">recursive call</dt>
+<dd>The statement that calls an already executing function.  Recursion can
+even be indirect &#8212; function <cite>f</cite> can call <cite>g</cite> which calls <cite>h</cite>,
+and <cite>h</cite> could make a call back to <cite>f</cite>.</dd>
+<dt id="term-recursive-definition">recursive definition</dt>
+<dd>A definition which defines something in terms of itself. To be useful
+it must include <em>base cases</em> which are not recursive. In this way it
+differs from a <em>circular definition</em>.  Recursive definitions often
+provide an elegant way to express complex data structures.</dd>
+</dl>
+</div>
+<div class="section" id="programming-exercises">
+<h1>Programming Exercises<a class="headerlink" href="#programming-exercises" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p class="first">Write a recursive function to compute the factorial of a number.</p>
+
+<button id="butt_ex_rec_1" onclick="createActiveCode('ex_rec_1',''); $('#butt_ex_rec_1').hide();">Open Editor</button>
+<div id="ex_rec_1"></div>
+<br />
+</li>
+<li><p class="first">Write a recursive function to reverse a list.</p>
+
+<button id="butt_ex_rec_2" onclick="createActiveCode('ex_rec_2',''); $('#butt_ex_rec_2').hide();">Open Editor</button>
+<div id="ex_rec_2"></div>
+<br />
+</li>
+<li><p class="first">Modify the recursive tree program using one or all of the following
+ideas:</p>
+<ul class="simple">
+<li>Modify the thickness of the branches so that as the <tt class="docutils literal"><span class="pre">branchLen</span></tt>
+gets smaller, the line gets thinner.</li>
+<li>Modify the color of the branches so that as the <tt class="docutils literal"><span class="pre">branchLen</span></tt> gets
+very short it is colored like a leaf.</li>
+<li>Modify the angle used in turning the turtle so that at each branch
+point the angle is selected at random in some range. For example
+choose the angle between 15 and 45 degrees. Play around to see
+what looks good.</li>
+<li>Modify the <tt class="docutils literal"><span class="pre">branchLen</span></tt> recursively so that instead of always
+subtracting the same amount you subtract a random amount in some
+range.</li>
+</ul>
+<p>If you implement all of the above ideas you will have a very
+realistic looking tree.</p>
+
+<button id="butt_ex_rec_3" onclick="createActiveCode('ex_rec_3',''); $('#butt_ex_rec_3').hide();">Open Editor</button>
+<div id="ex_rec_3"></div>
+<br />
+</li>
+<li><p class="first">Find or invent an algorithm for drawing a fractal mountain. Hint: One
+approach to this uses triangles again.</p>
+
+<button id="butt_ex_rec_4" onclick="createActiveCode('ex_rec_4',''); $('#butt_ex_rec_4').hide();">Open Editor</button>
+<div id="ex_rec_4"></div>
+<br />
+</li>
+<li><p class="first">Write a recursive function to compute the Fibonacci sequence. How
+does the performance of the recursive function compare to that of an
+iterative version?</p>
+
+<button id="butt_ex_rec_5" onclick="createActiveCode('ex_rec_5',''); $('#butt_ex_rec_5').hide();">Open Editor</button>
+<div id="ex_rec_5"></div>
+<br />
+</li>
+<li><p class="first">Using the turtle graphics module, write a recursive program to
+display a Hilbert curve.</p>
+
+<button id="butt_ex_rec_6" onclick="createActiveCode('ex_rec_6',''); $('#butt_ex_rec_6').hide();">Open Editor</button>
+<div id="ex_rec_6"></div>
+<br />
+</li>
+<li><p class="first">Using the turtle graphics module, write a recursive program to
+display a Koch snowflake.</p>
+
+<button id="butt_ex_rec_7" onclick="createActiveCode('ex_rec_7',''); $('#butt_ex_rec_7').hide();">Open Editor</button>
+<div id="ex_rec_7"></div>
+<br />
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Classes/classesintro.html" title="Classes and Objects - the Basics"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="graphical.html" title="Visualizing Recursion"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>

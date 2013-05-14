@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Depth First Search &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Shortest Path Problems" href="graphshortpath.html" />
+    <link rel="prev" title="Breadth First Search" href="graphbfs.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="graphshortpath.html" title="Shortest Path Problems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="graphbfs.html" title="Breadth First Search"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Depth First Search</a><ul>
+<li><a class="reference internal" href="#the-knights-tour-problem">The Knight’s Tour Problem</a></li>
+<li><a class="reference internal" href="#building-the-knights-tour-graph">Building the Knight’s Tour Graph</a></li>
+<li><a class="reference internal" href="#implementing-knights-tour">Implementing Knight’s Tour</a></li>
+<li><a class="reference internal" href="#knights-tour-analysis">Knight’s Tour Analysis</a></li>
+<li><a class="reference internal" href="#general-depth-first-search">General Depth First Search</a></li>
+<li><a class="reference internal" href="#depth-first-search-analysis">Depth First Search Analysis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#topological-sorting">Topological Sorting</a></li>
+<li><a class="reference internal" href="#strongly-connected-components">Strongly Connected Components</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="graphbfs.html"
+                        title="previous chapter">Breadth First Search</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="graphshortpath.html"
+                        title="next chapter">Shortest Path Problems</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="depth-first-search">
+<h1>Depth First Search<a class="headerlink" href="#depth-first-search" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-knights-tour-problem">
+<h2>The Knight’s Tour Problem<a class="headerlink" href="#the-knights-tour-problem" title="Permalink to this headline">¶</a></h2>
+<p>Another classic problem that we can use to illustrate a second common
+graph algorithm is called the “knight’s tour.” The knight’s
+tour puzzle is played on a chess board with a single chess piece, the
+knight. The object of the puzzle is to find a sequence of moves that
+allow the knight to visit every square on the board exactly once. One
+such sequence is called a “tour.” The knight’s tour puzzle has
+fascinated chess players, mathematicians and computer scientists alike
+for many years. The upper bound on the number of possible legal tours
+for an eight-by-eight chessboard is known to be
+<span class="math">\(1.305 \times 10^{35}\)</span>; however, there are even more possible
+dead ends. Clearly this is a problem that requires some real brains,
+some real computing power, or both.</p>
+<p>Although researchers have studied many different algorithms to solve the
+knight’s tour problem, a graph search is one of the easiest to
+understand and program. Once again we will solve the problem using two
+main steps:</p>
+<ul class="simple">
+<li>Represent the legal moves of a knight on a chessboard as a graph.</li>
+<li>Use a graph algorithm to find a path of length
+<span class="math">\(rows \times columns - 1\)</span> where every vertex on the graph is
+visited exactly once.</li>
+</ul>
+</div>
+<div class="section" id="building-the-knights-tour-graph">
+<h2>Building the Knight’s Tour Graph<a class="headerlink" href="#building-the-knights-tour-graph" title="Permalink to this headline">¶</a></h2>
+<p>To represent the knight’s tour problem as a graph we will use the
+following two ideas: Each square on the chessboard can be represented as
+a node in the graph. Each legal move by the knight can be represented as
+an edge in the graph. <a class="reference internal" href="#fig-knightmoves"><em>Figure 1</em></a> illustrates the legal
+moves by a knight and the corresponding edges in a graph.</p>
+<div class="figure align-center" id="fig-knightmoves">
+<img alt="../_images/knightmoves.png" src="../_images/knightmoves.png" />
+<p class="caption">Legal Moves for a Knight on Square 12, and the Corresponding Graph</p>
+</div>
+<p>To build the full graph for an n-by-n board we can use the Python
+function shown below. The <tt class="docutils literal"><span class="pre">knightGraph</span></tt> function
+makes one pass over the entire board. At each square on the board the
+<tt class="docutils literal"><span class="pre">knightGraph</span></tt> function calls a helper, <tt class="docutils literal"><span class="pre">genLegalMoves</span></tt>, to create a
+list of legal moves for that position on the board. All legal moves are
+then converted into edges in the graph. Another helper function
+<tt class="docutils literal"><span class="pre">posToNodeId</span></tt> converts a location on the board in terms of a row and a
+column into a linear vertex number similar to the vertex numbers shown
+in <a class="reference internal" href="#fig-knightmoves"><em>Figure 1</em></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="kn">import</span> <span class="n">Graph</span>
+<span class="k">def</span> <span class="nf">knightGraph</span><span class="p">(</span><span class="n">bdSize</span><span class="p">):</span>
+    <span class="n">ktGraph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bdSize</span><span class="p">):</span>
+       <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bdSize</span><span class="p">):</span>
+           <span class="n">nodeId</span> <span class="o">=</span> <span class="n">posToNodeId</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">bdSize</span><span class="p">)</span>
+           <span class="n">newPositions</span> <span class="o">=</span> <span class="n">genLegalMoves</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">bdSize</span><span class="p">)</span>
+           <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">newPositions</span><span class="p">:</span>
+               <span class="n">nid</span> <span class="o">=</span> <span class="n">posToNodeId</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+               <span class="n">ktGraph</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="n">nodeId</span><span class="p">,</span><span class="n">nid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ktGraph</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">genLegalMoves</span></tt> function takes the position of the knight on the
+board and generates each of the eight possible moves. The <tt class="docutils literal"><span class="pre">legalCoord</span></tt>
+helper function makes sure that a particular move that is generated is
+still on the board.</p>
+<div class="highlight-python"><pre>def genLegalMoves(x,y,bdSize):
+    newMoves = []
+    moveOffsets = [(-1,-2),(-1,2),(-2,-1),(-2,1),
+                   ( 1,-2),( 1,2),( 2,-1),( 2,1)]:
+    for i in moveOffsets:
+        newX = x + i[0]
+        newY = y + i[1]
+        if legalCoord(newX,bdSize) and \
+                        legalCoord(newY,bdSize):
+            newMoves.append((newX,newY))
+    return newMoves
+
+def legalCoord(x,bdSize):
+    if x &gt;= 0 and x &lt; bdSize:
+        return True
+    else:
+        return False</pre>
+</div>
+<p><a class="reference internal" href="#fig-bigknight"><em>Figure 2</em></a> shows the complete graph of possible moves on an
+eight-by-eight board. There are exactly 336 edges in the graph. Notice
+that the vertices corresponding to the edges of the board have fewer
+connections (legal moves) than the vertices in the middle of the board.
+Once again we can see how sparse the graph is. If the graph was fully
+connected there would be 4,096 edges. Since there are only 336 edges,
+the adjacency matrix would be only 8.2 percent full.</p>
+<div class="figure align-center" id="fig-bigknight">
+<img alt="../_images/bigknight.png" src="../_images/bigknight.png" />
+<p class="caption">All Legal Moves for a Knight on an <span class="math">\(8 \times 8\)</span> Chessboard</p>
+</div>
+</div>
+<div class="section" id="implementing-knights-tour">
+<h2>Implementing Knight’s Tour<a class="headerlink" href="#implementing-knights-tour" title="Permalink to this headline">¶</a></h2>
+<p>The search algorithm we will use to solve the knight’s tour problem is
+called <strong>depth first search</strong> (<strong>DFS</strong>).  Whereas the
+breadth first search algorithm discussed in the previous section builds
+a search tree one level at a time, a depth first search creates a search
+tree by exploring one branch of the tree as deeply as possible. In this
+section we will look at two algorithms that implement a depth first
+search. The first algorithm we will look at directly solves the knight’s
+tour problem by explicitly forbidding a node to be visited more than
+once. The second implementation is more general, but allows nodes to be
+visited more than once as the tree is constructed. The second version is
+used in subsequent sections to develop additional graph algorithms.</p>
+<p>The depth first exploration of the graph is exactly what we need in
+order to find a path that has exactly 63 edges. We will see that when
+the depth first search algorithm finds a dead end (a place in the graph
+where there are no more moves possible) it backs up the tree to the next
+deepest vertex that allows it to make a legal move.</p>
+<p>The <tt class="docutils literal"><span class="pre">knightTour</span></tt> function takes four parameters: <tt class="docutils literal"><span class="pre">n</span></tt>, the current
+depth in the search tree; <tt class="docutils literal"><span class="pre">path</span></tt>, a list of vertices visited up to
+this point; <tt class="docutils literal"><span class="pre">u</span></tt>, the vertex in the graph we wish to explore; and
+<tt class="docutils literal"><span class="pre">limit</span></tt> the number of nodes in the path. The <tt class="docutils literal"><span class="pre">knightTour</span></tt> function
+is recursive. When the <tt class="docutils literal"><span class="pre">knightTour</span></tt> function is called, it first
+checks the base case condition. If we have a path that contains 64
+vertices, we return from <tt class="docutils literal"><span class="pre">knightTour</span></tt> with a status of <tt class="docutils literal"><span class="pre">True</span></tt>,
+indicating that we have found a successful tour. If the path is not long
+enough we continue to explore one level deeper by choosing a new vertex
+to explore and calling <tt class="docutils literal"><span class="pre">knightTour</span></tt> recursively for that vertex.</p>
+<p>DFS also uses colors to keep track of which vertices in the graph have
+been visited. Unvisited vertices are colored white, and visited vertices
+are colored gray. If all neighbors of a particular vertex have been
+explored and we have not yet reached our goal length of 64 vertices, we
+have reached a dead end. When we reach a dead end we must backtrack.
+Backtracking happens when we return from <tt class="docutils literal"><span class="pre">knightTour</span></tt> with a status of
+<tt class="docutils literal"><span class="pre">False</span></tt>. In the breadth first search we used a queue to keep track of
+which vertex to visit next. Since depth first search is recursive, we
+are implicitly using a stack to help us with our backtracking. When we
+return from a call to <tt class="docutils literal"><span class="pre">knightTour</span></tt> with a status of <tt class="docutils literal"><span class="pre">False</span></tt>, in line 11,
+we remain inside the <tt class="docutils literal"><span class="pre">while</span></tt> loop and look at the next
+vertex in <tt class="docutils literal"><span class="pre">nbrList</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Vertex</span>
+<span class="k">def</span> <span class="nf">knightTour</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">limit</span><span class="p">):</span>
+        <span class="n">u</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">:</span>
+            <span class="n">nbrList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">getConnections</span><span class="p">())</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">nbrList</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">nbrList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;white&#39;</span><span class="p">:</span>
+                    <span class="n">done</span> <span class="o">=</span> <span class="n">knightTour</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">nbrList</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">limit</span><span class="p">)</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>  <span class="c"># prepare to backtrack</span>
+                <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">u</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">done</span>
+</pre></div>
+</div>
+<p>Let&#8217;s look at a simple example of <tt class="docutils literal"><span class="pre">knightTour</span></tt> in action. You
+can refer to the figures below to follow the steps of the search. For
+this example we will assume that the call to the <tt class="docutils literal"><span class="pre">getConnections</span></tt>
+method on line 6 orders the nodes in
+alphabetical order. We begin by calling <tt class="docutils literal"><span class="pre">knightTour(0,path,A,6)</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">knightTour</span></tt> starts with node A <a class="reference internal" href="#fig-ktb"><em>Figure 3</em></a>. The nodes adjacent to A are B and D.
+Since B is before D alphabetically, DFS selects B to expand next as
+shown in <a class="reference internal" href="#fig-ktb"><em>Figure 4</em></a>. Exploring B happens when <tt class="docutils literal"><span class="pre">knightTour</span></tt> is
+called recursively. B is adjacent to C and D, so <tt class="docutils literal"><span class="pre">knightTour</span></tt> elects
+to explore C next. However, as you can see in <a class="reference internal" href="#fig-ktc"><em>Figure 5</em></a> node C is
+a dead end with no adjacent white nodes. At this point we change the
+color of node C back to white. The call to <tt class="docutils literal"><span class="pre">knightTour</span></tt> returns a
+value of <tt class="docutils literal"><span class="pre">False</span></tt>. The return from the recursive call effectively
+backtracks the search to vertex B (see <a class="reference internal" href="#fig-ktd"><em>Figure 6</em></a>). The next
+vertex on the list to explore is vertex D, so <tt class="docutils literal"><span class="pre">knightTour</span></tt> makes a
+recursive call moving to node D. From vertex D on,
+<tt class="docutils literal"><span class="pre">knightTour</span></tt> can continue to make recursive calls until we
+get to node C again.  However, this time when we get to node C the
+test <tt class="docutils literal"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">limit</span></tt> fails so we know that we have exhausted all the
+nodes in the graph. At this point we can return <tt class="docutils literal"><span class="pre">True</span></tt> to indicate
+that we have made a successful tour of the graph. When we return the
+list, <tt class="docutils literal"><span class="pre">path</span></tt> has the values <tt class="docutils literal"><span class="pre">[A,B,D,E,F,C]</span></tt>, which is the the order
+we need to traverse the graph to visit each node exactly once.</p>
+<div class="figure align-center" id="fig-kta">
+<img alt="../_images/ktdfsa.png" src="../_images/ktdfsa.png" />
+<p class="caption">Start with node A</p>
+</div>
+<div class="figure align-center" id="fig-ktb">
+<img alt="../_images/ktdfsb.png" src="../_images/ktdfsb.png" />
+<p class="caption">Explore B</p>
+</div>
+<div class="figure align-center" id="fig-ktc">
+<img alt="../_images/ktdfsc.png" src="../_images/ktdfsc.png" />
+<p class="caption">Node C is a dead end</p>
+</div>
+<div class="figure align-center" id="fig-ktd">
+<img alt="../_images/ktdfsd.png" src="../_images/ktdfsd.png" />
+<p class="caption">backtrack to B</p>
+</div>
+<div class="figure align-center" id="fig-kte">
+<img alt="../_images/ktdfse.png" src="../_images/ktdfse.png" />
+</div>
+<div class="figure align-center" id="fig-ktf">
+<img alt="../_images/ktdfsf.png" src="../_images/ktdfsf.png" />
+</div>
+<div class="figure align-center" id="fig-ktg">
+<img alt="../_images/ktdfsg.png" src="../_images/ktdfsg.png" />
+</div>
+<div class="figure align-center" id="fig-kth">
+<img alt="../_images/ktdfsh.png" src="../_images/ktdfsh.png" />
+<p class="caption">Finish</p>
+</div>
+<p><a class="reference internal" href="#fig-tour"><em>Figure 7</em></a> shows you what a complete tour around an
+eight-by-eight board looks like. There are many possible tours; some are
+symmetric. With some modification you can make circular tours that start
+and end at the same square.</p>
+<div class="figure align-center" id="fig-tour">
+<img alt="../_images/completeTour.png" src="../_images/completeTour.png" />
+<p class="caption">A Complete Tour of the Board</p>
+</div>
+</div>
+<div class="section" id="knights-tour-analysis">
+<h2>Knight’s Tour Analysis<a class="headerlink" href="#knights-tour-analysis" title="Permalink to this headline">¶</a></h2>
+<p>There is one last interesting topic regarding the knight’s tour problem,
+then we will move on to the general version of the depth first search.
+The topic is performance. In particular, <tt class="docutils literal"><span class="pre">knightTour</span></tt> is very
+sensitive to the method you use to select the next vertex to visit. For
+example, on a five-by-five board you can produce a path in about 1.5
+seconds on a reasonably fast computer. But what happens if you try an
+eight-by-eight board? In this case, depending on the speed of your
+computer, you may have to wait up to a half hour to get the results! The
+reason for this is that the knight’s tour problem as we have implemented
+it so far is an exponential algorithm of size <span class="math">\(O(k^N)\)</span>, where N
+is the number of squares on the chess board, and k is a small constant.
+<a class="reference internal" href="#fig-8array"><em>Figure 8</em></a> can help us visualize why this is so. The root of
+the tree represents the starting point of the search. From there the
+algorithm generates and checks each of the possible moves the knight can
+make. As we have noted before the number of moves possible depends on
+the position of the knight on the board. In the corners there are only
+two legal moves, on the squares adjacent to the corners there are three
+and in the middle of the board there are eight. <a class="reference internal" href="#fig-nummoves"><em>Figure 9</em></a>
+shows the number of moves possible for each position on a board. At the
+next level of the tree there are once again between 2 and 8 possible
+next moves from the position we are currently exploring. The number of
+possible positions to examine corresponds to the number of nodes in the
+search tree.</p>
+<div class="figure align-center" id="fig-8array">
+<img alt="../_images/8arrayTree.png" src="../_images/8arrayTree.png" />
+<p class="caption">A Search Tree for the Knight’s Tour</p>
+</div>
+<div class="figure align-center" id="fig-nummoves">
+<img alt="../_images/moveCount.png" src="../_images/moveCount.png" />
+<p class="caption">Number of Possible Moves for Each Square</p>
+</div>
+<p>We have already seen that the number of nodes in a binary tree of height
+N is <span class="math">\(2^{N+1}-1\)</span>. For a tree with nodes that may have up to
+eight children instead of two the number of nodes is much larger.
+Because the branching factor of each node is variable, we could estimate
+the number of nodes using an average branching factor. The important
+thing to note is that this algorithm is exponential:
+<span class="math">\(k^{N+1}-1\)</span>, where <span class="math">\(k\)</span> is the average branching factor
+for the board. Let’s look at how rapidly this grows! For a board that is
+5x5 the tree will be 25 levels deep, or N = 24 counting the first level
+as level 0. The average branching factor is <span class="math">\(k = 3.8\)</span> So the
+number of nodes in the search tree is <span class="math">\(3.8^{25}-1\)</span> or
+<span class="math">\(3.12 \times 10^{14}\)</span>. For a 6x6 board, <span class="math">\(k = 4.4\)</span>, there
+are <span class="math">\(1.5
+\times 10^{23}\)</span> nodes, and for a regular 8x8 chess board,
+<span class="math">\(k = 5.25\)</span>, there are <span class="math">\(1.3 \times 10^{46}\)</span>. Of course,
+since there are multiple solutions to the problem we won’t have to
+explore every single node, but the fractional part of the nodes we do
+have to explore is just a constant multiplier which does not change the
+exponential nature of the problem. We will leave it as an exercise for
+you to see if you can express <span class="math">\(k\)</span> as a function of the board
+size.</p>
+<p>Luckily there is a way to speed up the eight-by-eight case so that it
+runs in under one second. In the listing below we show the code that
+speeds up the <tt class="docutils literal"><span class="pre">knightTour</span></tt>. This function, called <tt class="docutils literal"><span class="pre">orderbyAvail</span></tt>
+will be used in place of the call to <tt class="docutils literal"><span class="pre">u.getConnections</span></tt> in the code previously
+shown above. The critical line in the
+<tt class="docutils literal"><span class="pre">orderByAvail</span></tt> function is line 10. This line ensures that we
+select the vertex to go next that has the fewest available moves. You
+might think this is really counter productive; why not select the node
+that has the most available moves? You can try that approach easily by
+running the program yourself and inserting the line
+<tt class="docutils literal"><span class="pre">resList.reverse()</span></tt> right after the sort.</p>
+<p>The problem with using the vertex with the most available moves as your
+next vertex on the path is that it tends to have the knight visit the
+middle squares early on in the tour. When this happens it is easy for
+the knight to get stranded on one side of the board where it cannot
+reach unvisited squares on the other side of the board. On the other
+hand, visiting the squares with the fewest available moves first pushes
+the knight to visit the squares around the edges of the board first.
+This ensures that the knight will visit the hard-to-reach corners early
+and can use the middle squares to hop across the board only when
+necessary. Utilizing this kind of knowledge to speed up an algorithm is
+called a heuristic. Humans use heuristics every day to help make
+decisions, heuristic searches are often used in the field of artificial
+intelligence. This particular heuristic is called Warnsdorff’s
+algorithm, named after H. C. Warnsdorff who published his idea in 1823.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">orderByAvail</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">resList</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">n</span><span class="o">.</span><span class="n">geConnections</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;white&#39;</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;white&#39;</span><span class="p">:</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">resList</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">c</span><span class="p">,</span><span class="n">v</span><span class="p">))</span>
+    <span class="n">resList</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">resList</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="general-depth-first-search">
+<h2>General Depth First Search<a class="headerlink" href="#general-depth-first-search" title="Permalink to this headline">¶</a></h2>
+<p>The knight’s tour is a special case of a depth first search where the
+goal is to create the deepest depth first tree, without any branches.
+The more general depth first search is actually easier. Its goal is to
+search as deeply as possible, connecting as many nodes in the graph as
+possible and branching where necessary.</p>
+<p>It is even possible that a depth first search will create more than one
+tree. When the depth first search algorithm creates a group of trees we
+call this a <strong>depth first forest</strong>. As with the breadth first search our
+depth first search makes use of predecessor links to construct the tree.
+In addition, the depth first search will make use of two additional
+instance variables in the <tt class="docutils literal"><span class="pre">Vertex</span></tt> class. The new instance variables
+are the discovery and finish times. The discovery time tracks the number
+of steps in the algorithm before a vertex is first encountered. The
+finish time is the number of steps in the algorithm before a vertex is
+colored black. As we will see after looking at the algorithm, the
+discovery and finish times of the nodes provide some interesting
+properties we can use in later algorithms.</p>
+<p>The code for our depth first search is shown in the next listing. Since
+the two functions <tt class="docutils literal"><span class="pre">dfs</span></tt> and its helper <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> use a variable to
+keep track of the time across calls to <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> we chose to
+implement the code as methods of a class that inherits from the
+<tt class="docutils literal"><span class="pre">Graph</span></tt> class. This implementation extends the graph class by adding a
+<tt class="docutils literal"><span class="pre">time</span></tt> instance variable and the two methods <tt class="docutils literal"><span class="pre">dfs</span></tt> and <tt class="docutils literal"><span class="pre">dfsvisit</span></tt>.
+Looking at line&nbsp;11 you will notice that the <tt class="docutils literal"><span class="pre">dfs</span></tt> method
+iterates over all of the vertices in the graph calling <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> on
+the nodes that are white. The reason we iterate over all the nodes,
+rather than simply searching from a chosen starting node, is to make
+sure that all nodes in the graph are considered and that no vertices are
+left out of the depth first forest. It may look unusual to see the
+statement <tt class="docutils literal"><span class="pre">for</span> <span class="pre">aVertex</span> <span class="pre">in</span> <span class="pre">self</span></tt>, but remember that in this case <tt class="docutils literal"><span class="pre">self</span></tt>
+is an instance of the <tt class="docutils literal"><span class="pre">DFSGraph</span></tt> class, and iterating over all the
+vertices in an instance of a graph is a natural thing to do.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="kn">import</span> <span class="n">Graph</span>
+<span class="k">class</span> <span class="nc">DFSGraph</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">aVertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">aVertex</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+            <span class="n">aVertex</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">aVertex</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">aVertex</span><span class="o">.</span><span class="n">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;white&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dfsvisit</span><span class="p">(</span><span class="n">aVertex</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">dfsvisit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">startVertex</span><span class="p">):</span>
+        <span class="n">startVertex</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">startVertex</span><span class="o">.</span><span class="n">setDiscovery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">nextVertex</span> <span class="ow">in</span> <span class="n">startVertex</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">nextVertex</span><span class="o">.</span><span class="n">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;white&#39;</span><span class="p">:</span>
+                <span class="n">nextVertex</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="n">startVertex</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dfsvisit</span><span class="p">(</span><span class="n">nextVertex</span><span class="p">)</span>
+        <span class="n">startVertex</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">startVertex</span><span class="o">.</span><span class="n">setFinish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Although our implementation of <tt class="docutils literal"><span class="pre">bfs</span></tt> was only interested in
+considering nodes for which there was a path leading back to the start,
+it is possible to create a breadth first forest that represents the
+shortest path between all pairs of nodes in the graph. We leave this as
+an exercise. In our next two algorithms we will see why keeping track of
+the depth first forest is important.</p>
+<p>The <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> method starts with a single vertex called
+<tt class="docutils literal"><span class="pre">startVertex</span></tt> and explores all of the neighboring white vertices as
+deeply as possible. If you look carefully at the code for <tt class="docutils literal"><span class="pre">dfsvisit</span></tt>
+and compare it to breadth first search, what you should notice is that
+the <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> algorithm is almost identical to <tt class="docutils literal"><span class="pre">bfs</span></tt> except that on
+the last line of the inner <tt class="docutils literal"><span class="pre">for</span></tt> loop, <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> calls itself
+recursively to continue the search at a deeper level, whereas <tt class="docutils literal"><span class="pre">bfs</span></tt>
+adds the node to a queue for later exploration. It is interesting to
+note that where <tt class="docutils literal"><span class="pre">bfs</span></tt> uses a queue, <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> uses a stack. You
+don’t see a stack in the code, but it is implicit in the recursive call
+to <tt class="docutils literal"><span class="pre">dfsvisit</span></tt>.</p>
+<p>The following sequence of figures illustrates the depth first search algorithm in
+action for a small graph. In these figures, the dotted lines
+indicate edges that are checked, but the node at the other end of the
+edge has already been added to the depth first tree. In the code this
+test is done by checking that the color of the other node is non-white.</p>
+<p>The search begins at vertex A of the graph (<a class="reference internal" href="#fig-gdfsa"><em>Figure 10</em></a>). Since all of the vertices
+are white at the beginning of the search the algorithm visits vertex A.
+The first step in visiting a vertex is to set the color to gray, which
+indicates that the vertex is being explored and the discovery time is
+set to 1. Since vertex A has two adjacent vertices (B, D) each of those
+need to be visited as well. We’ll make the arbitrary decision that we
+will visit the adjacent vertices in alphabetical order.</p>
+<p>Vertex B is visited next, so its color is set to gray and its discovery
+time is set to 2. Vertex B is also adjacent to two other nodes (C, D) so
+we will follow the alphabetical order and visit node C next.</p>
+<p>Visiting vertex C brings us to the end of one branch of the tree. After
+coloring the node gray and setting its discovery time to 3, the
+algorithm also determines that there are no adjacent vertices to C. This
+means that we are done exploring node C and so we can color the vertex
+black, and set the finish time to 4. You can see the state of our search
+at this point in <a class="reference internal" href="#fig-gdfsd"><em>Figure 13</em></a>.</p>
+<p>Since vertex C was the end of one branch we now return to vertex B and
+continue exploring the nodes adjacent to B. The only additional vertex
+to explore from B is D, so we can now visit D and continue our search
+from vertex D. Vertex D quickly leads us to vertex E. Vertex E has two
+adjacent vertices, B and F. Normally we would explore these adjacent
+vertices alphabetically, but since B is already colored gray the
+algorithm recognizes that it should not visit B since doing so would put
+the algorithm in a loop! So exploration continues with the next vertex
+in the list, namely F.</p>
+<p>Vertex F has only one adjacent vertex, C, but since C is colored black
+there is nothing else to explore, and the algorithm has reached the end
+of another branch. From here on, you will see in <a class="reference internal" href="#fig-gdfsh"><em>Figure 17</em></a> thru
+<a class="reference internal" href="#fig-gdfsl"><em>Figure 21</em></a>&nbsp; that the algorithm works its way back to the first node,
+setting finish times and coloring vertices black.</p>
+<div class="figure align-center" id="fig-gdfsa">
+<img alt="../_images/gendfsa.png" src="../_images/gendfsa.png" />
+<p class="caption">Constructing the Depth First Search Tree-10</p>
+</div>
+<div class="figure align-center" id="fig-gdfsb">
+<img alt="../_images/gendfsb.png" src="../_images/gendfsb.png" />
+<p class="caption">Constructing the Depth First Search Tree-11</p>
+</div>
+<div class="figure align-center" id="fig-gdfsc">
+<img alt="../_images/gendfsc.png" src="../_images/gendfsc.png" />
+<p class="caption">Constructing the Depth First Search Tree-12</p>
+</div>
+<div class="figure align-center" id="fig-gdfsd">
+<img alt="../_images/gendfsd.png" src="../_images/gendfsd.png" />
+<p class="caption">Constructing the Depth First Search Tree-13</p>
+</div>
+<div class="figure align-center" id="fig-gdfse">
+<img alt="../_images/gendfse.png" src="../_images/gendfse.png" />
+<p class="caption">Constructing the Depth First Search Tree-14</p>
+</div>
+<div class="figure align-center" id="fig-gdfsf">
+<img alt="../_images/gendfsf.png" src="../_images/gendfsf.png" />
+<p class="caption">Constructing the Depth First Search Tree-15</p>
+</div>
+<div class="figure align-center" id="fig-gdfsg">
+<img alt="../_images/gendfsg.png" src="../_images/gendfsg.png" />
+<p class="caption">Constructing the Depth First Search Tree-16</p>
+</div>
+<div class="figure align-center" id="fig-gdfsh">
+<img alt="../_images/gendfsh.png" src="../_images/gendfsh.png" />
+<p class="caption">Constructing the Depth First Search Tree-17</p>
+</div>
+<div class="figure align-center" id="fig-gdfsi">
+<img alt="../_images/gendfsi.png" src="../_images/gendfsi.png" />
+<p class="caption">Constructing the Depth First Search Tree-18</p>
+</div>
+<div class="figure align-center" id="fig-gdfsj">
+<img alt="../_images/gendfsj.png" src="../_images/gendfsj.png" />
+<p class="caption">Constructing the Depth First Search Tree-19</p>
+</div>
+<div class="figure align-center" id="fig-gdfsk">
+<img alt="../_images/gendfsk.png" src="../_images/gendfsk.png" />
+<p class="caption">Constructing the Depth First Search Tree-20</p>
+</div>
+<div class="figure align-center" id="fig-gdfsl">
+<img alt="../_images/gendfsl.png" src="../_images/gendfsl.png" />
+<p class="caption">Constructing the Depth First Search Tree-21</p>
+</div>
+<p>The starting and finishing times for each node display a property called
+the <strong>parenthesis property</strong>. This property means that all the children
+of a particular node in the depth first tree have a later discovery time
+and an earlier finish time than their parent. <a class="reference internal" href="#fig-dfstree"><em>Figure 22</em></a> shows
+the tree constructed by the depth first search algorithm.</p>
+<div class="figure align-center" id="fig-dfstree">
+<img alt="../_images/dfstree.png" src="../_images/dfstree.png" />
+<p class="caption">The Resulting Depth First Search Tree</p>
+</div>
+</div>
+<div class="section" id="depth-first-search-analysis">
+<h2>Depth First Search Analysis<a class="headerlink" href="#depth-first-search-analysis" title="Permalink to this headline">¶</a></h2>
+<p>The general running time for depth first search is as follows. The loops
+in <tt class="docutils literal"><span class="pre">dfs</span></tt> both run in <span class="math">\(O(V)\)</span>,
+not counting what happens in <tt class="docutils literal"><span class="pre">dfsvisit</span></tt>, since they are executed once
+for each vertex in the graph. In <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> the loop is executed once for each edge in the adjacency
+list of the current vertex. Since <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> is only called
+recursively if the vertex is white, the loop will execute a maximum of
+once for every edge in the graph or <span class="math">\(O(E)\)</span>. So, the total time
+for depth first search is <span class="math">\(O(V + E)\)</span>.</p>
+</div>
+</div>
+<div class="section" id="topological-sorting">
+<h1>Topological Sorting<a class="headerlink" href="#topological-sorting" title="Permalink to this headline">¶</a></h1>
+<p>To demonstrate that computer scientists can turn just about anything
+into a graph problem, let’s consider the difficult problem of stirring
+up a batch of pancakes. The recipe is really quite simple: 1 egg, 1 cup
+of pancake mix, 1 tablespoon oil, and <span class="math">\(3 \over 4\)</span> cup of milk.
+To make pancakes you must heat the griddle, mix all the ingredients
+together and spoon the mix onto a hot griddle. When the pancakes start
+to bubble you turn them over and let them cook until they are golden
+brown on the bottom. Before you eat your pancakes you are going to want
+to heat up some syrup. <a class="reference internal" href="#fig-pancakes"><em>Figure 23</em></a> illustrates this process as
+a graph.</p>
+<div class="figure align-center" id="fig-pancakes">
+<img alt="../_images/pancakes.png" src="../_images/pancakes.png" />
+<p class="caption">The Steps for Making Pancakes</p>
+</div>
+<p>The difficult thing about making pancakes is knowing what to do first.
+As you can see from <a class="reference internal" href="#fig-pancakes"><em>Figure 23</em></a> you might start by heating the
+griddle or by adding any of the ingredients to the pancake mix. To help
+us decide the precise order in which we should do each of the steps
+required to make our pancakes we turn to a graph algorithm called the
+<strong>topological sort</strong>.</p>
+<p>A topological sort takes a directed acyclic graph and produces a linear
+ordering of all its vertices such that if the graph <span class="math">\(G\)</span> contains
+an edge <span class="math">\((v,w)\)</span> then the vertex <span class="math">\(v\)</span> comes before the
+vertex <span class="math">\(w\)</span> in the ordering. Directed acyclic graphs are used in
+many applications to indicate the precedence of events. Making pancakes
+is just one example; other examples include software project schedules,
+precedence charts for optimizing database queries, and multiplying
+matrices.</p>
+<p>The topological sort is a simple but useful adaptation of a depth first
+search. The algorithm for the topological sort is as follows:</p>
+<ol class="arabic simple">
+<li>Call <tt class="docutils literal"><span class="pre">dfs(g)</span></tt> for some graph <tt class="docutils literal"><span class="pre">g</span></tt>. The main reason we want to call
+depth first search is to compute the finish times for each of the
+vertices.</li>
+<li>Store the vertices in a list in decreasing order of finish time.</li>
+<li>Return the ordered list as the result of the topological sort.</li>
+</ol>
+<p><a class="reference internal" href="#fig-pancakesdfs"><em>Figure 24</em></a> shows the depth first forest constructed by
+<tt class="docutils literal"><span class="pre">dfs</span></tt> on the pancake-making graph shown in <a class="reference internal" href="#fig-pancakes"><em>Figure 23</em></a>.</p>
+<div class="figure align-center" id="fig-pancakesdfs">
+<img alt="../_images/pancakesDFS.png" src="../_images/pancakesDFS.png" />
+<p class="caption">Result of Depth First Search on the Pancake Graph</p>
+</div>
+<p>Finally, <a class="reference internal" href="#fig-pancakests"><em>Figure 25</em></a> shows the results of applying the
+topological sort algorithm to our graph. Now all the ambiguity has been
+removed and we know exactly the order in which to perform the pancake
+making steps.</p>
+<div class="figure align-center" id="fig-pancakests">
+<img alt="../_images/pancakesTS.png" src="../_images/pancakesTS.png" />
+<p class="caption">Result of Topological Sort on Directed Acyclic Graph</p>
+</div>
+</div>
+<div class="section" id="strongly-connected-components">
+<h1>Strongly Connected Components<a class="headerlink" href="#strongly-connected-components" title="Permalink to this headline">¶</a></h1>
+<p>For the remainder of this chapter we will turn our attention to some
+extremely large graphs. The graphs we will use to study some additional
+algorithms are the graphs produced by the connections between hosts on
+the Internet and the links between web pages. We will begin with web
+pages.</p>
+<p>Search engines like Google and Bing exploit the fact that the pages on
+the web form a very large directed graph. To transform the World Wide
+Web into a graph, we will treat a page as a vertex, and the hyperlinks
+on the page as edges connecting one vertex to another.
+<a class="reference internal" href="#fig-cshome"><em>Figure 26</em></a> shows a very small part of the graph produced by
+following the links from one page to the next, beginning at Luther
+College’s Computer Science home page. Of course, this graph could be
+huge, so we have limited it to web sites that are no more than 10 links
+away from the CS home page.</p>
+<div class="figure align-center" id="fig-cshome">
+<img alt="../_images/cshome.png" src="../_images/cshome.png" />
+<p class="caption">The Graph Produced by Links from the Luther Computer Science Home Page</p>
+</div>
+<p>If you study the graph in <a class="reference internal" href="#fig-cshome"><em>Figure 26</em></a> you might make some
+interesting observations. First you might notice that many of the other
+web sites on the graph are other Luther College web sites. Second, you
+might notice that there are several links to other colleges in Iowa.
+Third, you might notice that there are several links to other liberal
+arts colleges. You might conclude from this that there is some
+underlying structure to the web that clusters together web sites that
+are similar on some level.</p>
+<p>One graph algorithm that can help find clusters of highly interconnected
+vertices in a graph is called the strongly connected components
+algorithm (<strong>SCC</strong>). We formally define a <strong>strongly connected
+component</strong>, <span class="math">\(C\)</span>, of a graph <span class="math">\(G\)</span>, as the largest subset
+of vertices <span class="math">\(C \subset V\)</span> such that for every pair of vertices
+<span class="math">\(v, w \in C\)</span> we have a path from <span class="math">\(v\)</span> to <span class="math">\(w\)</span> and
+a path from <span class="math">\(w\)</span> to <span class="math">\(v\)</span>. <a class="reference internal" href="#fig-scc1"><em>Figure 27</em></a> shows a simple
+graph with three strongly connected components. The strongly connected
+components are identified by the different shaded areas.</p>
+<div class="figure align-center" id="fig-scc1">
+<img alt="../_images/scc1.png" src="../_images/scc1.png" />
+<p class="caption">A Directed Graph with Three Strongly Connected Components</p>
+</div>
+<p>Once the strongly connected components have been identified we can show
+a simplified view of the graph by combining all the vertices in one
+strongly connected component into a single larger vertex. The simplified
+version of the graph in <a class="reference internal" href="#fig-scc1"><em>Figure 27</em></a> is shown in <a class="reference internal" href="#fig-scc2"><em>Figure&nbsp;28</em></a>.</p>
+<div class="figure align-center" id="fig-scc2">
+<img alt="../_images/scc2.png" src="../_images/scc2.png" />
+<p class="caption">The Reduced Graph</p>
+</div>
+<p>Once again we will see that we can create a very powerful and efficient
+algorithm by making use of a depth first search. Before we tackle the
+main SCC algorithm we must look at one other definition. The
+transposition of a graph <span class="math">\(G\)</span> is defined as the graph
+<span class="math">\(G^T\)</span> where all the edges in the graph have been reversed. That
+is, if there is a directed edge from node A to node B in the original
+graph then <span class="math">\(G^T\)</span> will contain and edge from node B to node A.
+<a class="reference internal" href="#fig-tpa"><em>Figure 29</em></a> and <a class="reference internal" href="#fig-tpb"><em>Figure 30</em></a> show a simple graph and its transposition.</p>
+<div class="figure align-center" id="fig-tpa">
+<img alt="../_images/transpose1.png" src="../_images/transpose1.png" />
+<p class="caption">A Graph <span class="math">\(G\)</span></p>
+</div>
+<div class="figure align-center" id="fig-tpb">
+<img alt="../_images/transpose2.png" src="../_images/transpose2.png" />
+<p class="caption">Its Transpose <span class="math">\(G^T\)</span></p>
+</div>
+<p>Look at the figures again. Notice that the graph in
+<a class="reference internal" href="#fig-tpa"><em>Figure 29</em></a> has two strongly connected components. Now look at
+<a class="reference internal" href="#fig-tpb"><em>Figure 30</em></a>. Notice that it has the same two strongly connected
+components.</p>
+<p>We can now describe the algorithm to compute the strongly connected
+components for a graph.</p>
+<ol class="arabic simple">
+<li>Call <tt class="docutils literal"><span class="pre">dfs</span></tt> for the graph <span class="math">\(G\)</span> to compute the finish times
+for each vertex.</li>
+<li>Compute <span class="math">\(G^T\)</span>.</li>
+<li>Call <tt class="docutils literal"><span class="pre">dfs</span></tt> for the graph <span class="math">\(G^T\)</span> but in the main loop of DFS
+explore each vertex in decreasing order of finish time.</li>
+<li>Each tree in the forest computed in step 3 is a strongly connected
+component. Output the vertex ids for each vertex in each tree in the
+forest to identify the component.</li>
+</ol>
+<p>Lets trace the operation of the steps described above on the example
+graph in <a class="reference internal" href="#fig-scc1"><em>Figure 27</em></a>. <a class="reference internal" href="#fig-sccalga"><em>Figure&nbsp;31</em></a> shows the starting and
+finishing times computed for the original graph by the DFS algorithm.
+<a class="reference internal" href="#fig-sccalgb"><em>Figure 32</em></a> shows the starting and finishing times computed by
+running DFS on the transposed graph.</p>
+<div class="figure align-center" id="fig-sccalga">
+<img alt="../_images/scc1a.png" src="../_images/scc1a.png" />
+<p class="caption">Finishing times for the original graph <span class="math">\(G\)</span></p>
+</div>
+<div class="figure align-center" id="fig-sccalgb">
+<img alt="../_images/scc1b.png" src="../_images/scc1b.png" />
+<p class="caption">Finishing times for <span class="math">\(G^T\)</span></p>
+</div>
+<p>Finally, <a class="reference internal" href="#fig-sccforest"><em>Figure 33</em></a> shows the forest of three trees produced
+in step 3 of the strongly connected component algorithm. You will notice
+that we do not provide you with the Python code for the SCC algorithm,
+we leave writing this program as an exercise.</p>
+<div class="figure align-center" id="fig-sccforest">
+<img alt="../_images/sccforest.png" src="../_images/sccforest.png" />
+<p class="caption">The Strongly Connected Components as a Forest of Trees</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="graphshortpath.html" title="Shortest Path Problems"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="graphbfs.html" title="Breadth First Search"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Shortest Path Problems &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Summary" href="graphexercises.html" />
+    <link rel="prev" title="Depth First Search" href="graphdfs.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="graphexercises.html" title="Summary"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="graphdfs.html" title="Depth First Search"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Shortest Path Problems</a><ul>
+<li><a class="reference internal" href="#dijkstras-algorithm">Dijkstra’s Algorithm</a></li>
+<li><a class="reference internal" href="#analysis-of-dijkstras-algorithm">Analysis of Dijkstra’s Algorithm</a></li>
+<li><a class="reference internal" href="#prims-spanning-tree-algorithm">Prim’s Spanning Tree Algorithm</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="graphdfs.html"
+                        title="previous chapter">Depth First Search</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="graphexercises.html"
+                        title="next chapter">Summary</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="shortest-path-problems">
+<h1>Shortest Path Problems<a class="headerlink" href="#shortest-path-problems" title="Permalink to this headline">¶</a></h1>
+<p>When you surf the web, send an email, or log in to a laboratory computer
+from another location on campus a lot of work is going on behind the
+scenes to get the information on your computer transferred to another
+computer. The in-depth study of how information flows from one computer
+to another over the Internet is the primary topic for a class in
+computer networking. However, we will talk about how the Internet works
+just enough to understand another very important graph algorithm.</p>
+<div class="figure align-center" id="fig-inet">
+<img alt="../_images/Internet.png" src="../_images/Internet.png" />
+<p class="caption">Overview of Connectivity in the Internet</p>
+</div>
+<p><a class="reference internal" href="#fig-inet"><em>Figure 1</em></a> shows you a high-level overview of how communication
+on the Internet works. When you use your browser to request a web page
+from a server, the request must travel over your local area network and
+out onto the Internet through a router. The request travels over the
+Internet and eventually arrives at a router for the local area network
+where the server is located. The web page you requested then travels
+back through the same routers to get to your browser. Inside the cloud
+labelled “Internet” in <a class="reference internal" href="#fig-inet"><em>Figure 1</em></a> are additional routers. The job
+of all of these routers is to work together to get your information from
+place to place. You can see there are many routers for yourself if your
+computer supports the <tt class="docutils literal"><span class="pre">traceroute</span></tt> command. The text below shows
+the output of the <tt class="docutils literal"><span class="pre">traceroute</span></tt> command which illustrates that there
+are 13 routers between the web server at Luther College and the mail
+server at the University of Minnesota.</p>
+<div class="highlight-python"><pre>1  192.203.196.1
+2  hilda.luther.edu (216.159.75.1)
+3  ICN-Luther-Ether.icn.state.ia.us (207.165.237.137)
+4  ICN-ISP-1.icn.state.ia.us (209.56.255.1)
+5  p3-0.hsa1.chi1.bbnplanet.net (4.24.202.13)
+6  ae-1-54.bbr2.Chicago1.Level3.net (4.68.101.97)
+7  so-3-0-0.mpls2.Minneapolis1.Level3.net (64.159.4.214)
+8  ge-3-0.hsa2.Minneapolis1.Level3.net (4.68.112.18)
+9  p1-0.minnesota.bbnplanet.net (4.24.226.74)
+10  TelecomB-BR-01-V4002.ggnet.umn.edu (192.42.152.37)
+11  TelecomB-BN-01-Vlan-3000.ggnet.umn.edu (128.101.58.1)
+12  TelecomB-CN-01-Vlan-710.ggnet.umn.edu (128.101.80.158)
+13  baldrick.cs.umn.edu (128.101.80.129)(N!)  88.631 ms (N!)
+
+
+Routers from One Host to the Next over the Internet</pre>
+</div>
+<p>Each router on the Internet is connected to one or more other routers.
+So if you run the <tt class="docutils literal"><span class="pre">traceroute</span></tt> command at different times of the day,
+you are likely to see that your information flows through different
+routers at different times. This is because there is a cost associated
+with each connection between a pair of routers that depends on the
+volume of traffic, the time of day, and many other factors. By this time
+it will not surprise you to learn that we can represent the network of
+routers as a graph with weighted edges.</p>
+<div class="figure align-center" id="fig-network">
+<img alt="../_images/routeGraph.png" src="../_images/routeGraph.png" />
+<p class="caption">Connections and Weights between Routers in the Internet</p>
+</div>
+<p><a class="reference internal" href="#fig-network"><em>Figure 2</em></a> shows a small example of a weighted graph that
+represents the interconnection of routers in the Internet. The problem
+that we want to solve is to find the path with the smallest total weight
+along which to route any given message. This problem should sound
+familiar because it is similar to the problem we solved using a breadth
+first search, except that here we are concerned with the total weight of
+the path rather than the number of hops in the path. It should be noted
+that if all the weights are equal, the problem is the same.</p>
+<div class="section" id="dijkstras-algorithm">
+<h2>Dijkstra’s Algorithm<a class="headerlink" href="#dijkstras-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The algorithm we are going to use to determine the shortest path is
+called “Dijkstra’s algorithm.” Dijkstra’s algorithm is an iterative
+algorithm that provides us with the shortest path from one particular
+starting node to all other nodes in the graph. Again this is similar to
+the results of a breadth first search.</p>
+<p>To keep track of the total cost from the start node to each destination
+we will make use of the <tt class="docutils literal"><span class="pre">dist</span></tt> instance variable in the Vertex class.
+The <tt class="docutils literal"><span class="pre">dist</span></tt> instance variable will contain the current total weight of
+the smallest weight path from the start to the vertex in question. The
+algorithm iterates once for every vertex in the graph; however, the
+order that we iterate over the vertices is controlled by a priority
+queue. The value that is used to determine the order of the objects in
+the priority queue is <tt class="docutils literal"><span class="pre">dist</span></tt>. When a vertex is first created <tt class="docutils literal"><span class="pre">dist</span></tt>
+is set to a very large number. Theoretically you would set <tt class="docutils literal"><span class="pre">dist</span></tt> to
+infinity, but in practice we just set it to a number that is larger than
+any real distance we would have in the problem we are trying to solve.</p>
+<p>The code for Dijkstra’s algorithm is shown in
+the following listing. When the algorithm finishes the distances are set
+correctly as are the predecessor links for each vertex in the graph.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="kn">import</span> <span class="n">PriorityQueue</span><span class="p">,</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Vertex</span>
+<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">aGraph</span><span class="p">,</span><span class="n">start</span><span class="p">):</span>
+    <span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+    <span class="n">start</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pq</span><span class="o">.</span><span class="n">buildHeap</span><span class="p">([(</span><span class="n">v</span><span class="o">.</span><span class="n">getDistance</span><span class="p">(),</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">aGraph</span><span class="p">])</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">pq</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">():</span>
+        <span class="n">currentVert</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">delMin</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">nextVert</span> <span class="ow">in</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+            <span class="n">newDist</span> <span class="o">=</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getDistance</span><span class="p">()</span> \
+                    <span class="o">+</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getWeight</span><span class="p">(</span><span class="n">nextVert</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">newDist</span> <span class="o">&lt;</span> <span class="n">nextVert</span><span class="o">.</span><span class="n">getDistance</span><span class="p">():</span>
+                <span class="n">nextVert</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span> <span class="n">newDist</span> <span class="p">)</span>
+                <span class="n">nextVert</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="n">currentVert</span><span class="p">)</span>
+                <span class="n">pq</span><span class="o">.</span><span class="n">decreaseKey</span><span class="p">(</span><span class="n">nextVert</span><span class="p">,</span><span class="n">newDist</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Dijkstra’s algorithm uses a priority queue. You may recall that a
+priority queue is based on the heap that we implemented in the Tree Chapter.
+There are a couple of differences between that
+simple implementation and the implementation we
+use for Dijkstra’s algorithm. First, the <tt class="docutils literal"><span class="pre">PriorityQueue</span></tt> class stores
+tuples of key, value pairs. This is important for Dijkstra’s algorithm
+as the key in the priority queue must match the key of the vertex in the
+graph. Secondly the value is used for deciding the priority, and thus
+the position of the key in the priority queue. In this implementation we
+use the distance to the vertex as the priority because as we will see
+when we are exploring the next vertex, we always want to explore the
+vertex that has the smallest distance. The second difference is the
+addition of the <tt class="docutils literal"><span class="pre">decreaseKey</span></tt> method. As you can see, this method is used when the distance to a vertex that
+is already in the queue is reduced, and thus moves that vertex toward
+the front of the queue.</p>
+<p>Let’s walk through an application of Dijkstra’s algorithm one vertex at
+a time using the following sequence of figures as our guide. We begin with the vertex
+<span class="math">\(u\)</span>. The three vertices adjacent to <span class="math">\(u\)</span> are
+<span class="math">\(v,w,\)</span> and <span class="math">\(x\)</span>. Since the initial distances to
+<span class="math">\(v,w,\)</span> and <span class="math">\(x\)</span> are all initialized to <tt class="docutils literal"><span class="pre">sys.maxint</span></tt>,
+the new costs to get to them through the start node are all their direct
+costs. So we update the costs to each of these three nodes. We also set
+the predecessor for each node to <span class="math">\(u\)</span> and we add each node to the
+priority queue. We use the distance as the key for the priority queue.
+The state of the algorithm is shown in <a class="reference internal" href="#fig-dija"><em>Figure 3</em></a>.</p>
+<p>In the next iteration of the <tt class="docutils literal"><span class="pre">while</span></tt> loop we examine the vertices that
+are adjacent to <span class="math">\(x\)</span>. The vertex <span class="math">\(x\)</span> is next because it
+has the lowest overall cost and therefore bubbled its way to the
+beginning of the priority queue. At <span class="math">\(x\)</span> we look at its neighbors
+<span class="math">\(u,v,w\)</span> and <span class="math">\(y\)</span>. For each neighboring vertex we check to
+see if the distance to that vertex through <span class="math">\(x\)</span> is smaller than
+the previously known distance. Obviously this is the case for
+<span class="math">\(y\)</span> since its distance was <tt class="docutils literal"><span class="pre">sys.maxint</span></tt>. It is not the case
+for <span class="math">\(u\)</span> or <span class="math">\(v\)</span> since their distances are 0 and 2
+respectively. However, we now learn that the distance to <span class="math">\(w\)</span> is
+smaller if we go through <span class="math">\(x\)</span> than from <span class="math">\(u\)</span> directly to
+<span class="math">\(w\)</span>. Since that is the case we update <span class="math">\(w\)</span> with a new
+distance and change the predecessor for <span class="math">\(w\)</span> from <span class="math">\(u\)</span> to
+<span class="math">\(x\)</span>. See <a class="reference internal" href="#fig-dijb"><em>Figure 4</em></a> for the state of all the vertices.</p>
+<p>The next step is to look at the vertices neighboring <span class="math">\(v\)</span>. This
+step results in no changes to the graph, so we move on to node
+<span class="math">\(y\)</span>. At node <span class="math">\(y\)</span> we discover that it is cheaper to get
+to both <span class="math">\(w\)</span> and <span class="math">\(z\)</span>, so we adjust the distances and
+predecessor links accordingly. Finally we check nodes <span class="math">\(w\)</span> and
+<span class="math">\(z\)</span>. However, no additional changes are found and so the
+priority queue is empty and Dijkstra’s algorithm exits.</p>
+<div class="figure align-center" id="fig-dija">
+<img alt="../_images/dijkstraa.png" src="../_images/dijkstraa.png" />
+<p class="caption">Tracing Dijkstra’s Algorithm-3</p>
+</div>
+<div class="figure align-center" id="fig-dijb">
+<img alt="../_images/dijkstrab.png" src="../_images/dijkstrab.png" />
+<p class="caption">Tracing Dijkstra’s Algorithm-4</p>
+</div>
+<div class="figure align-center" id="fig-dijc">
+<img alt="../_images/dijkstrac.png" src="../_images/dijkstrac.png" />
+<p class="caption">Tracing Dijkstra’s Algorithm-5</p>
+</div>
+<div class="figure align-center" id="fig-dijd">
+<img alt="../_images/dijkstrad.png" src="../_images/dijkstrad.png" />
+<p class="caption">Tracing Dijkstra’s Algorithm-6</p>
+</div>
+<div class="figure align-center" id="fig-dije">
+<img alt="../_images/dijkstrae.png" src="../_images/dijkstrae.png" />
+<p class="caption">Tracing Dijkstra’s Algorithm-7</p>
+</div>
+<div class="figure align-center" id="fig-dijf">
+<img alt="../_images/dijkstraf.png" src="../_images/dijkstraf.png" />
+<p class="caption">Tracing Dijkstra’s Algorithm-8</p>
+</div>
+<p>It is important to note that Dijkstra’s algorithm works only when the
+weights are all positive. You should convince yourself that if you
+introduced a negative weight on one of the edges to the graph that the algorithm would never exit.</p>
+<p>We will note that to route messages through the Internet, other
+algorithms are used for finding the shortest path. One of the problems
+with using Dijkstra’s algorithm on the Internet is that you must have a
+complete representation of the graph in order for the algorithm to run.
+The implication of this is that every router has a complete map of all
+the routers in the Internet. In practice this is not the case and other
+variations of the algorithm allow each router to discover the graph as
+they go. One such algorithm that you may want to read about is called
+the “distance vector” routing algorithm.</p>
+</div>
+<div class="section" id="analysis-of-dijkstras-algorithm">
+<h2>Analysis of Dijkstra’s Algorithm<a class="headerlink" href="#analysis-of-dijkstras-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Finally, let us look at the running time of Dijkstra’s algorithm. We
+first note that building the priority queue takes <span class="math">\(O(V)\)</span> time
+since we initially add every vertex in the graph to the priority queue.
+Once the queue is constructed the <tt class="docutils literal"><span class="pre">while</span></tt> loop
+is executed once for every vertex since vertices are all added at the
+beginning and only removed after that. Within that loop each call to
+<tt class="docutils literal"><span class="pre">delMin</span></tt>, takes <span class="math">\(O(\log V)\)</span> time. Taken together that part of
+the loop and the calls to delMin take <span class="math">\(O(V \log(V))\)</span>. The
+<tt class="docutils literal"><span class="pre">for</span></tt> loop is executed once for each edge in the
+graph, and within the <tt class="docutils literal"><span class="pre">for</span></tt> loop the call to <tt class="docutils literal"><span class="pre">decreaseKey</span></tt> takes
+time <span class="math">\(O(E
+\log(V))\)</span>. So the combined running time is :math:` O((V+E) log(V))`.</p>
+</div>
+<div class="section" id="prims-spanning-tree-algorithm">
+<h2>Prim’s Spanning Tree Algorithm<a class="headerlink" href="#prims-spanning-tree-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>For our last graph algorithm let’s consider a problem that online game
+designers and Internet radio providers face. The problem is that they
+want to efficiently transfer a piece of information to anyone and
+everyone who may be listening. This is important in gaming so that all
+the players know the very latest position of every other player. This is
+important for Internet radio so that all the listeners that are tuned in
+are getting all the data they need to reconstruct the song they are
+listening to. <a class="reference internal" href="#fig-bcast1"><em>Figure 9</em></a> illustrates the broadcast problem.</p>
+<div class="figure align-center" id="fig-bcast1">
+<img alt="../_images/bcast1.png" src="../_images/bcast1.png" />
+<p class="caption">The Broadcast Problem</p>
+</div>
+<p>There are some brute force solutions to this problem, so let’s look at
+them first to help understand the broadcast problem better. This will
+also help you appreciate the solution that we will propose when we are
+done. To begin, the broadcast host has some information that the
+listeners all need to receive. The simplest solution is for the
+broadcasting host to keep a list of all of the listeners and send
+individual messages to each. In <a class="reference internal" href="#fig-bcast1"><em>Figure 9</em></a> we show a small
+network with a broadcaster and some listeners. Using this first
+approach, four copies of every message would be sent. Assuming that the
+least cost path is used, let’s see how many times each router would
+handle the same message.</p>
+<p>All messages from the broadcaster go through router A, so A sees all
+four copies of every message. Router C sees only one copy of each
+message for its listener. However, routers B and D would see three
+copies of every message since routers B and D are on the cheapest path
+for listeners 1, 2, and 3. When you consider that the broadcast host
+must send hundreds of messages each second for a radio broadcast, that
+is a lot of extra traffic.</p>
+<p>A brute force solution is for the broadcast host to send a single copy
+of the broadcast message and let the routers sort things out. In this
+case, the easiest solution is a strategy called <strong>uncontrolled
+flooding</strong>. The flooding strategy works as follows. Each message starts
+with a time to live (<tt class="docutils literal"><span class="pre">ttl</span></tt>) value set to some number greater than or
+equal to the number of edges between the broadcast host and its most
+distant listener. Each router gets a copy of the message and passes the
+message on to <em>all</em> of its neighboring routers. When the message is
+passed on the <tt class="docutils literal"><span class="pre">ttl</span></tt> is decreased. Each router continues to send copies
+of the message to all its neighbors until the <tt class="docutils literal"><span class="pre">ttl</span></tt> value reaches 0.
+It is easy to convince yourself that uncontrolled flooding generates
+many more unnecessary messages than our first strategy.</p>
+<p>The solution to this problem lies in the construction of a minimum
+weight <strong>spanning tree</strong>. Formally we define the minimum spanning tree
+<span class="math">\(T\)</span> for a graph <span class="math">\(G = (V,E)\)</span> as follows. <span class="math">\(T\)</span> is
+an acyclic subset of <span class="math">\(E\)</span> that connects all the vertices in
+<span class="math">\(V\)</span>. The sum of the weights of the edges in T is minimized.</p>
+<p><a class="reference internal" href="#fig-mst1"><em>Figure 10</em></a> shows a simplified version of the broadcast graph and
+highlights the edges that form a minimum spanning tree for the graph.
+Now to solve our broadcast problem, the broadcast host simply sends a
+single copy of the broadcast message into the network. Each router
+forwards the message to any neighbor that is part of the spanning tree,
+excluding the neighbor that just sent it the message. In this example A
+forwards the message to B. B forwards the message to D and C. D forwards
+the message to E, which forwards it to F, which forwards it to G. No
+router sees more than one copy of any message, and all the listeners
+that are interested see a copy of the message.</p>
+<div class="figure align-center" id="fig-mst1">
+<img alt="../_images/mst1.png" src="../_images/mst1.png" />
+<p class="caption">Minimum Spanning Tree for the Broadcast Graph</p>
+</div>
+<p>The algorithm we will use to solve this problem is called Prim’s
+algorithm. Prim’s algorithm belongs to a family of algorithms called the
+“greedy algorithms” because at each step we will choose the cheapest
+next step. In this case the cheapest next step is to follow the edge
+with the lowest weight. Our last step is to develop Prim’s algorithm.</p>
+<p>The basic idea in constructing a spanning tree is as follows:</p>
+<div class="highlight-python"><pre>While :math:`T` is not yet a spanning tree
+   Find an edge that is safe to add to the tree
+   Add the new edge to :math:`T`</pre>
+</div>
+<p>The trick is in the step that directs us to “find an edge that is safe.”
+We define a safe edge as any edge that connects a vertex that is in the
+spanning tree to a vertex that is not in the spanning tree. This ensures
+that the tree will always remain a tree and therefore have no cycles.</p>
+<p>The Python code to implement Prim’s algorithm is shown in
+the listing below. Prim’s algorithm is similar to Dijkstra’s algorithm
+in that they both use a priority queue to select the next vertex to add
+to the growing graph.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="kn">import</span> <span class="n">PriorityQueue</span><span class="p">,</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Vertex</span>
+<span class="k">def</span> <span class="nf">prim</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">start</span><span class="p">):</span>
+    <span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span><span class="p">)</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">start</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pq</span><span class="o">.</span><span class="n">buildHeap</span><span class="p">([(</span><span class="n">v</span><span class="o">.</span><span class="n">getDistance</span><span class="p">(),</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">])</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">pq</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">():</span>
+        <span class="n">currentVert</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">delMin</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">nextVert</span> <span class="ow">in</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+          <span class="n">newCost</span> <span class="o">=</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getWeight</span><span class="p">(</span><span class="n">nextVert</span><span class="p">)</span> \
+                  <span class="o">+</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getDistance</span><span class="p">()</span>
+          <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pq</span> <span class="ow">and</span> <span class="n">newCost</span><span class="o">&lt;</span><span class="n">nextVert</span><span class="o">.</span><span class="n">getDistance</span><span class="p">():</span>
+              <span class="n">nextVert</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="n">currentVert</span><span class="p">)</span>
+              <span class="n">nextVert</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="n">newCost</span><span class="p">)</span>
+              <span class="n">pq</span><span class="o">.</span><span class="n">decreaseKey</span><span class="p">(</span><span class="n">nextVert</span><span class="p">,</span><span class="n">newCost</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following sequence of figures shows the algorithm in operation on our sample
+tree. We begin with the starting vertex as A. The distances to all the
+other vertices are initialized to infinity. Looking at the neighbors of
+A we can update distances to two of the additional vertices B and C
+because the distances to B and C through A are less than infinite. This
+moves B and C to the front of the priority queue. Update the predecessor
+links for B and C by setting them to point to A. It is important to note
+that we have not formally added B or C to the spanning tree yet. A node
+is not considered to be part of the spanning tree until it is removed
+from the priority queue.</p>
+<p>Since B has the smallest distance we look at B next. Examining B’s
+neighbors we see that D and E can be updated. Both D and E get new
+distance values and their predecessor links are updated. Moving on to
+the next node in the priority queue we find C. The only node C is
+adjacent to that is still in the priority queue is F, thus we can update
+the distance to F and adjust F’s position in the priority queue.</p>
+<p>Now we examine the vertices adjacent to node D. We find that we can
+update E and reduce the distance to E from 6 to 4. When we do this we
+change the predecessor link on E to point back to D, thus preparing it
+to be grafted into the spanning tree but in a different location. The
+rest of the algorithm proceeds as you would expect, adding each new node
+to the tree.</p>
+<div class="figure align-center" id="fig-prima">
+<img alt="../_images/prima.png" src="../_images/prima.png" />
+<p class="caption">Tracing Prim’s Algorithm-11</p>
+</div>
+<div class="figure align-center" id="fig-primb">
+<img alt="../_images/primb.png" src="../_images/primb.png" />
+<p class="caption">Tracing Prim’s Algorithm-12</p>
+</div>
+<div class="figure align-center" id="fig-primc">
+<img alt="../_images/primc.png" src="../_images/primc.png" />
+<p class="caption">Tracing Prim’s Algorithm-13</p>
+</div>
+<div class="figure align-center" id="fig-primd">
+<img alt="../_images/primd.png" src="../_images/primd.png" />
+<p class="caption">Tracing Prim’s Algorithm-14</p>
+</div>
+<div class="figure align-center" id="fig-prime">
+<img alt="../_images/prime.png" src="../_images/prime.png" />
+<p class="caption">Tracing Prim’s Algorithm-15</p>
+</div>
+<div class="figure align-center" id="fig-primf">
+<img alt="../_images/primf.png" src="../_images/primf.png" />
+<p class="caption">Tracing Prim’s Algorithm-16</p>
+</div>
+<div class="figure align-center" id="fig-primg">
+<img alt="../_images/primg.png" src="../_images/primg.png" />
+<p class="caption">Tracing Prim’s Algorithm-17</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="graphexercises.html" title="Summary"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="graphdfs.html" title="Depth First Search"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>

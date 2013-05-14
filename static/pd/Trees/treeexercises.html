@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Summary &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Graphs" href="../Graphs/graphintro.html" />
+    <link rel="prev" title="Balanced Binary Search Trees" href="balanced.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Graphs/graphintro.html" title="Graphs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="balanced.html" title="Balanced Binary Search Trees"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Summary</a></li>
+<li><a class="reference internal" href="#key-terms">Key Terms</a></li>
+<li><a class="reference internal" href="#discussion-questions">Discussion Questions</a></li>
+<li><a class="reference internal" href="#programming-exercises">Programming Exercises</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="balanced.html"
+                        title="previous chapter">Balanced Binary Search Trees</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Graphs/graphintro.html"
+                        title="next chapter">Graphs</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>In this chapter we have looked at the tree data structure. The tree data
+structure enables us to write many interesting algorithms. In this
+chapter we have looked at algorithms that use trees to do the following:</p>
+<ul class="simple">
+<li>A binary tree for parsing and evaluating expressions.</li>
+<li>A binary tree for implementing the map ADT.</li>
+<li>A balanced binary tree (AVL tree) for implementing the map ADT.</li>
+<li>A binary tree to implement a min heap.</li>
+<li>A min heap used to implement a priority queue.</li>
+</ul>
+</div>
+<div class="section" id="key-terms">
+<h1>Key Terms<a class="headerlink" href="#key-terms" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="39%" />
+<col width="37%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>AVL tree</td>
+<td>binary heap</td>
+<td>binary search tree</td>
+</tr>
+<tr class="row-even"><td>binary tree</td>
+<td>child / children</td>
+<td>complete binary tree</td>
+</tr>
+<tr class="row-odd"><td>edge</td>
+<td>heap order property</td>
+<td>height</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">inorder</span></tt></td>
+<td>leaf node</td>
+<td>level</td>
+</tr>
+<tr class="row-odd"><td>map</td>
+<td>min/max heap</td>
+<td>node</td>
+</tr>
+<tr class="row-even"><td>parent</td>
+<td>path</td>
+<td><tt class="docutils literal"><span class="pre">postorder</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">preorder</span></tt></td>
+<td>priority queue</td>
+<td>root</td>
+</tr>
+<tr class="row-even"><td>rotation</td>
+<td>sibling</td>
+<td>successor</td>
+</tr>
+<tr class="row-odd"><td>subtree</td>
+<td>tree</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="discussion-questions">
+<h1>Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p class="first">Draw the tree structure resulting from the following set of tree
+function calls:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">BinaryTree</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">insertLeft</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">[3, [4, [], []], []]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">insertLeft</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">[3, [5, [4, [], []], []], []]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">insertRight</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="go">[3, [5, [4, [], []], []], [6, [], []]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">insertRight</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">[3, [5, [4, [], []], []], [7, [], [6, [], []]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">setRootVal</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">insertLeft</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+<span class="go">[9, [11, [5, [4, [], []], []], []], [7, [], [6, [], []]]]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Trace the algorithm for creating an expression tree for the
+expression <span class="math">\((4 * 8) / 6 - 3\)</span>.</p>
+</li>
+<li><p class="first">Consider the following list of integers: [1,2,3,4,5,6,7,8,9,10]. Show
+the binary search tree resulting from inserting the integers in the
+list.</p>
+</li>
+<li><p class="first">Consider the following list of integers: [10,9,8,7,6,5,4,3,2,1]. Show
+the binary search tree resulting from inserting the integers in the
+list.</p>
+</li>
+<li><p class="first">Generate a random list of integers. Show the binary heap tree
+resulting from inserting the integers on the list one at a time.</p>
+</li>
+<li><p class="first">Using the list from the previous question, show the binary heap tree
+resulting from using the list as a parameter to the <tt class="docutils literal"><span class="pre">buildHeap</span></tt>
+method. Show both the tree and list form.</p>
+</li>
+<li><p class="first">Draw the binary search tree that results from inserting the following
+keys in the order given: 68,88,61,89,94,50,4,76,66, and 82.</p>
+</li>
+<li><p class="first">Generate a random list of integers. Draw the binary search tree
+resulting from inserting the integers on the list.</p>
+</li>
+<li><p class="first">Consider the following list of integers: [1,2,3,4,5,6,7,8,9,10]. Show
+the binary heap resulting from inserting the integers one at a time.</p>
+</li>
+<li><p class="first">Consider the following list of integers: [10,9,8,7,6,5,4,3,2,1]. Show
+the binary heap resulting from inserting the integers one at a time.</p>
+</li>
+<li><p class="first">Consider the two different methods we used for implementing a binary
+tree. Why must we check before the call to <tt class="docutils literal"><span class="pre">preorder</span></tt> when
+implementing as a method, whereas we could check inside the call when
+implementing as a function?</p>
+</li>
+<li><p class="first">Show the function calls needed to build the following binary tree.</p>
+</li>
+</ol>
+<div class="figure align-center">
+<img alt="../_images/exerTree.png" src="../_images/exerTree.png" />
+</div>
+<ol class="arabic simple">
+<li>Given the following tree, perform the appropriate rotations to bring
+it back into balance.</li>
+</ol>
+<div class="figure align-center">
+<img alt="../_images/rotexer1.png" src="../_images/rotexer1.png" />
+</div>
+<ol class="arabic simple">
+<li>Using the following as a starting point, derive the equation
+that gives the updated balance factor for node D.</li>
+</ol>
+<div class="figure align-center">
+<img alt="../_images/bfderive.png" src="../_images/bfderive.png" />
+</div>
+</div>
+<div class="section" id="programming-exercises">
+<h1>Programming Exercises<a class="headerlink" href="#programming-exercises" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Extend the <tt class="docutils literal"><span class="pre">buildParseTree</span></tt> function to handle mathematical
+expressions that do not have spaces between every character.</li>
+<li>Modify the <tt class="docutils literal"><span class="pre">buildParseTree</span></tt> and <tt class="docutils literal"><span class="pre">evaluate</span></tt> functions to handle
+boolean statements (and, or, and not). Remember that “not” is a unary
+operator, so this will complicate your code somewhat.</li>
+<li>Using the <tt class="docutils literal"><span class="pre">findSuccessor</span></tt> method, write a non-recursive inorder
+traversal for a binary search tree.</li>
+<li>Modify the code for a binary search tree to make it threaded. Write a
+non-recursive inorder traversal method for the threaded binary search
+tree. A threaded binary tree maintains a reference from each node to
+its successor.</li>
+<li>Modify our implementation of the binary search tree so that it
+handles duplicate keys properly. That is, if a key is already in the
+tree then the new payload should replace the old rather than add
+another node with the same key.</li>
+<li>Create a binary heap with a limited heap size. In other words, the
+heap only keeps track of the <tt class="docutils literal"><span class="pre">n</span></tt> most important items. If the heap
+grows in size to more than <tt class="docutils literal"><span class="pre">n</span></tt> items the least important item is
+dropped.</li>
+<li>Clean up the <tt class="docutils literal"><span class="pre">printexp</span></tt> function so that it does not include an
+‘extra’ set of parentheses around each number.</li>
+<li>Using the <tt class="docutils literal"><span class="pre">buildHeap</span></tt> method, write a sorting function that can
+sort a list in <span class="math">\(O(n\log{n})\)</span> time.</li>
+<li>Write a function that takes a parse tree for a mathematical
+expression and calculates the derivative of the expression with
+respect to some variable.</li>
+<li>Implement a binary heap as a max heap.</li>
+<li>Using the <tt class="docutils literal"><span class="pre">BinaryHeap</span></tt> class, implement a new class called
+<tt class="docutils literal"><span class="pre">PriorityQueue</span></tt>. Your <tt class="docutils literal"><span class="pre">PriorityQueue</span></tt> class should implement the
+constructor, plus the <tt class="docutils literal"><span class="pre">enqueue</span></tt> and <tt class="docutils literal"><span class="pre">dequeue</span></tt> methods.</li>
+<li>Implement the <tt class="docutils literal"><span class="pre">delete</span></tt> method for an AVL tree.</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Graphs/graphintro.html" title="Graphs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="balanced.html" title="Balanced Binary Search Trees"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>

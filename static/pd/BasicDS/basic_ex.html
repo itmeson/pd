@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Summary &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Recursion" href="../Recursion/recursionsimple.html" />
+    <link rel="prev" title="Lists" href="linkedlists.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Recursion/recursionsimple.html" title="Recursion"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="linkedlists.html" title="Lists"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Summary</a></li>
+<li><a class="reference internal" href="#key-terms">Key Terms</a></li>
+<li><a class="reference internal" href="#discussion-questions">Discussion Questions</a></li>
+<li><a class="reference internal" href="#programming-exercises">Programming Exercises</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="linkedlists.html"
+                        title="previous chapter">Lists</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Recursion/recursionsimple.html"
+                        title="next chapter">Recursion</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Linear data structures maintain their data in an ordered fashion.</li>
+<li>Stacks are simple data structures that maintain a LIFO, last-in
+first-out, ordering.</li>
+<li>The fundamental operations for a stack are <tt class="docutils literal"><span class="pre">push</span></tt>, <tt class="docutils literal"><span class="pre">pop</span></tt>, and
+<tt class="docutils literal"><span class="pre">isEmpty</span></tt>.</li>
+<li>Queues are simple data structures that maintain a FIFO, first-in
+first-out, ordering.</li>
+<li>The fundamental operations for a queue are <tt class="docutils literal"><span class="pre">enqueue</span></tt>, <tt class="docutils literal"><span class="pre">dequeue</span></tt>,
+and <tt class="docutils literal"><span class="pre">isEmpty</span></tt>.</li>
+<li>Prefix, infix, and postfix are all ways to write expressions.</li>
+<li>Stacks are very useful for designing algorithms to evaluate and
+translate expressions.</li>
+<li>Stacks can provide a reversal characteristic.</li>
+<li>Queues can assist in the construction of timing simulations.</li>
+<li>Simulations use random number generators to create a real-life
+situation and allow us to answer “what if” types of questions.</li>
+<li>Deques are data structures that allow hybrid behavior like that of
+stacks and queues.</li>
+<li>The fundamental operations for a deque are <tt class="docutils literal"><span class="pre">addFront</span></tt>, <tt class="docutils literal"><span class="pre">addRear</span></tt>,
+<tt class="docutils literal"><span class="pre">removeFront</span></tt>, <tt class="docutils literal"><span class="pre">removeRear</span></tt>, and <tt class="docutils literal"><span class="pre">isEmpty</span></tt>.</li>
+<li>Lists are collections of items where each item holds a relative
+position.</li>
+<li>A linked list implementation maintains logical order without
+requiring physical storage requirements.</li>
+<li>Modification to the head of the linked list is a special case.</li>
+</ul>
+</div>
+<div class="section" id="key-terms">
+<h1>Key Terms<a class="headerlink" href="#key-terms" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="33%" />
+<col width="29%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>balanced parentheses</td>
+<td>data field</td>
+<td>deque</td>
+</tr>
+<tr class="row-even"><td>first-in first-out (FIFO)</td>
+<td>fully parenthesized</td>
+<td>head</td>
+</tr>
+<tr class="row-odd"><td>infix</td>
+<td>last-in first-out (LIFO)</td>
+<td>linear data structure</td>
+</tr>
+<tr class="row-even"><td>linked list</td>
+<td>linked list traversal</td>
+<td>list</td>
+</tr>
+<tr class="row-odd"><td>node</td>
+<td>palindrome</td>
+<td>postfix</td>
+</tr>
+<tr class="row-even"><td>precedence</td>
+<td>prefix</td>
+<td>queue</td>
+</tr>
+<tr class="row-odd"><td>simulation</td>
+<td>stack</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="discussion-questions">
+<h1>Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Convert the following values to binary using “divide by 2.” Show the
+stack of remainders.<ul>
+<li>17</li>
+<li>45</li>
+<li>96</li>
+</ul>
+</li>
+<li>Convert the following infix expressions to prefix (use full
+parentheses):<ul>
+<li>(A+B)*(C+D)*(E+F)</li>
+<li>A+((B+C)*(D+E))</li>
+<li>A*B*C*D+E+F</li>
+</ul>
+</li>
+<li>Convert the above infix expressions to postfix (use full
+parentheses).</li>
+<li>Convert the above infix expressions to postfix using the direct
+conversion algorithm. Show the stack as the conversion takes place.</li>
+<li>Evaluate the following postfix expressions. Show the stack as each
+operand and operator is processed.<ul>
+<li>2 3 * 4 +</li>
+<li>1 2 + 3 + 4 + 5 +</li>
+<li>1 2 3 4 5 * + * +</li>
+</ul>
+</li>
+<li>The alternative implementation of the <tt class="docutils literal"><span class="pre">Queue</span></tt> ADT is to use a list
+such that the rear of the queue is at the end of the list. What would
+this mean for Big-O performance?</li>
+<li>What is the result of carrying out both steps of the linked list
+<tt class="docutils literal"><span class="pre">add</span></tt> method in reverse order? What kind of reference results? What
+types of problems may result?</li>
+<li>Explain how the linked list <tt class="docutils literal"><span class="pre">remove</span></tt> method works when the item to
+be removed is in the last node.</li>
+<li>Explain how the <tt class="docutils literal"><span class="pre">remove</span></tt> method works when the item is in the
+<em>only</em> node in the linked list.</li>
+</ol>
+</div>
+<div class="section" id="programming-exercises">
+<h1>Programming Exercises<a class="headerlink" href="#programming-exercises" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p class="first">Modify the infix-to-postfix algorithm so that it can handle errors.</p>
+</li>
+<li><p class="first">Modify the postfix evaluation algorithm so that it can handle errors.</p>
+</li>
+<li><p class="first">Implement a direct infix evaluator that combines the functionality of
+infix-to-postfix conversion and the postfix evaluation algorithm.
+Your evaluator should process infix tokens from left to right and use
+two stacks, one for operators and one for operands, to perform the
+evaluation.</p>
+</li>
+<li><p class="first">Turn your direct infix evaluator from the previous problem into a
+calculator.</p>
+</li>
+<li><p class="first">Implement the <tt class="docutils literal"><span class="pre">Queue</span></tt> ADT, using a list such that the rear of the
+queue is at the end of the list.</p>
+</li>
+<li><p class="first">Design and implement an experiment to do benchmark comparisons of the
+two queue implementations. What can you learn from such an
+experiment?</p>
+</li>
+<li><p class="first">It is possible to implement a queue such that both enqueue and
+dequeue have <span class="math">\(O(1)\)</span> performance <em>on average</em>. In this case it
+means that most of the time enqueue and dequeue will be
+<span class="math">\(O(1)\)</span> except in one particular circumstance where dequeue
+will be <span class="math">\(O(n)\)</span>.</p>
+</li>
+<li><p class="first">Consider a real life situation. Formulate a question and then design
+a simulation that can help to answer it. Possible situations include:</p>
+<ul class="simple">
+<li>Cars lined up at a car wash</li>
+<li>Customers at a grocery store check-out</li>
+<li>Airplanes taking off and landing on a runway</li>
+<li>A bank teller</li>
+</ul>
+<p>Be sure to state any assumptions that you make and provide any
+probabilistic data that must be considered as part of the scenario.</p>
+</li>
+<li><p class="first">Modify the Hot Potato simulation to allow for a randomly chosen
+counting value so that each pass is not predictable from the previous
+one.</p>
+</li>
+<li><p class="first">Implement a radix sorting machine. A radix sort for base 10 integers
+is a mechanical sorting technique that utilizes a collection of bins,
+one main bin and 10 digit bins. Each bin acts like a queue and
+maintains its values in the order that they arrive. The algorithm
+begins by placing each number in the main bin. Then it considers each
+value digit by digit. The first value is removed and placed in a
+digit bin corresponding to the digit being considered. For example,
+if the ones digit is being considered, 534 is placed in digit bin 4
+and 667 is placed in digit bin 7. Once all the values are placed in
+the corresponding digit bins, the values are collected from bin 0 to
+bin 9 and placed back in the main bin. The process continues with the
+tens digit, the hundreds, and so on. After the last digit is
+processed, the main bin contains the values in order.</p>
+</li>
+<li><p class="first">Another example of the parentheses matching problem comes from
+hypertext markup language (HTML). In HTML, tags exist in both opening
+and closing forms and must be balanced to properly describe a web
+document. This very simple HTML document:</p>
+<div class="highlight-python"><pre>&lt;html&gt;
+   &lt;head&gt;
+      &lt;title&gt;
+         Example
+      &lt;/title&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;h1&gt;Hello, world&lt;/h1&gt;
+   &lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+<p>is intended only to show the matching and nesting structure for tags
+in the language. Write a program that can check an HTML document for
+proper opening and closing tags.</p>
+</li>
+<li><p class="first">Extend the program from Listing 2.15 to handle palindromes with
+spaces. For example, I PREFER PI is a palindrome that reads the same
+forward and backward if you ignore the blank characters.</p>
+</li>
+<li><p class="first">To implement the <tt class="docutils literal"><span class="pre">length</span></tt> method, we counted the number of nodes in
+the list. An alternative strategy would be to store the number of
+nodes in the list as an additional piece of data in the head of the
+list. Modify the <tt class="docutils literal"><span class="pre">UnorderedList</span></tt> class to include this information
+and rewrite the <tt class="docutils literal"><span class="pre">length</span></tt> method.</p>
+</li>
+<li><p class="first">Implement the <tt class="docutils literal"><span class="pre">remove</span></tt> method so that it works correctly in the
+case where the item is not in the list.</p>
+</li>
+<li><p class="first">Modify the list classes to allow duplicates. Which methods will be
+impacted by this change?</p>
+</li>
+<li><p class="first">Implement {the __str__} method in the UnorderedList class. What
+would be a good string representation for a list?</p>
+</li>
+<li><p class="first">Implement {the __str__} method so that lists are displayed the
+Python way (with square brackets).</p>
+</li>
+<li><p class="first">Implement the remaining operations defined in the UnorderedList ADT
+(append, index, pop, insert).</p>
+</li>
+<li><p class="first">Implement a slice method for the <tt class="docutils literal"><span class="pre">UnorderedList</span></tt> class. It should
+take two parameters, <tt class="docutils literal"><span class="pre">start</span></tt> and <tt class="docutils literal"><span class="pre">stop</span></tt>, and return a copy of the
+list starting at the <tt class="docutils literal"><span class="pre">start</span></tt> position and going up to but not
+including the <tt class="docutils literal"><span class="pre">stop</span></tt> position.</p>
+</li>
+<li><p class="first">Implement the remaining operations defined in the OrderedList ADT.</p>
+</li>
+<li><p class="first">Consider the relationship between Unordered and Ordered lists. Is it
+possible that inheritance could be used to build a more efficient
+implementation? Implement this inheritance hierarchy.</p>
+</li>
+<li><p class="first">Implement a stack using linked lists.</p>
+</li>
+<li><p class="first">Implement a queue using linked lists.</p>
+</li>
+<li><p class="first">Implement a deque using linked lists.</p>
+</li>
+<li><p class="first">Design and implement an experiment that will compare the performance
+of a Python list with a list implemented as a linked list.</p>
+</li>
+<li><p class="first">Design and implement an experiment that will compare the performance
+of the Python list based stack and queue with the linked list
+implementation.</p>
+</li>
+<li><p class="first">The linked list implementation given above is called a singly linked
+list because each node has a single reference to the next node in
+sequence. An alternative implementation is known as a doubly linked
+list. In this implementation, each node has a reference to the next
+node (commonly called next) as well as a reference to the preceding
+node (commonly called back). The head reference also contains two
+references, one to the first node in the linked list and one to the
+last. Code this implementation in Python.</p>
+</li>
+<li><p class="first">Create an implementation of a queue that would have an average
+performance of O(1) for enqueue and dequeue operations.</p>
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Recursion/recursionsimple.html" title="Recursion"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="linkedlists.html" title="Lists"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>

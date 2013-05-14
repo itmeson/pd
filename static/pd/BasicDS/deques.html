@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deques &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Lists" href="linkedlists.html" />
+    <link rel="prev" title="Queues" href="queues.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="linkedlists.html" title="Lists"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="queues.html" title="Queues"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Deques</a><ul>
+<li><a class="reference internal" href="#what-is-a-deque">What Is a Deque?</a></li>
+<li><a class="reference internal" href="#the-deque-abstract-data-type">The Deque Abstract Data Type</a></li>
+<li><a class="reference internal" href="#implementing-a-deque-in-python">Implementing a Deque in Python</a></li>
+<li><a class="reference internal" href="#palindrome-checker">Palindrome-Checker</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="queues.html"
+                        title="previous chapter">Queues</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="linkedlists.html"
+                        title="next chapter">Lists</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="deques">
+<h1>Deques<a class="headerlink" href="#deques" title="Permalink to this headline">¶</a></h1>
+<p>We will conclude this introduction to basic data structures by looking
+at another variation on the theme of linear collections. However, unlike
+stack and queue, the deque (pronounced “deck”) has very few
+restrictions. Also, be careful that you do not confuse the spelling of
+“deque” with the queue removal operation “dequeue.”</p>
+<div class="section" id="what-is-a-deque">
+<h2>What Is a Deque?<a class="headerlink" href="#what-is-a-deque" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>deque</strong>, also known as a double-ended queue, is an ordered
+collection of items similar to the queue. It has two ends, a front and a
+rear, and the items remain positioned in the collection. What makes a
+deque different is the unrestrictive nature of adding and removing
+items. New items can be added at either the front or the rear. Likewise,
+existing items can be removed from either end. In a sense, this hybrid
+linear structure provides all the capabilities of stacks and queues in a
+single data structure. <a class="reference internal" href="#fig-basicdeque"><em>Figure 1</em></a> shows a deque of Python
+data objects.</p>
+<p>It is important to note that even though the deque can assume many of
+the characteristics of stacks and queues, it does not require the LIFO
+and FIFO orderings that are enforced by those data structures. It is up
+to you to make consistent use of the addition and removal operations.</p>
+<div class="figure align-center" id="fig-basicdeque">
+<img alt="../_images/basicdeque.png" src="../_images/basicdeque.png" />
+<p class="caption">A Deque of Python Data Objects</p>
+</div>
+</div>
+<div class="section" id="the-deque-abstract-data-type">
+<h2>The Deque Abstract Data Type<a class="headerlink" href="#the-deque-abstract-data-type" title="Permalink to this headline">¶</a></h2>
+<p>The deque abstract data type is defined by the following structure and
+operations. A deque is structured, as described above, as an ordered
+collection of items where items are added and removed from either end,
+either front or rear. The deque operations are given below.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">Deque()</span></tt> creates a new deque that is empty. It needs no parameters
+and returns an empty deque.</li>
+<li><tt class="docutils literal"><span class="pre">addFront(item)</span></tt> adds a new item to the front of the deque. It
+needs the item and returns nothing.</li>
+<li><tt class="docutils literal"><span class="pre">addRear(item)</span></tt> adds a new item to the rear of the deque. It needs
+the item and returns nothing.</li>
+<li><tt class="docutils literal"><span class="pre">removeFront()</span></tt> removes the front item from the deque. It needs no
+parameters and returns the item. The deque is modified.</li>
+<li><tt class="docutils literal"><span class="pre">removeRear()</span></tt> removes the rear item from the deque. It needs no
+parameters and returns the item. The deque is modified.</li>
+<li><tt class="docutils literal"><span class="pre">isEmpty()</span></tt> tests to see whether the deque is empty. It needs no
+parameters and returns a boolean value.</li>
+<li><tt class="docutils literal"><span class="pre">size()</span></tt> returns the number of items in the deque. It needs no
+parameters and returns an integer.</li>
+</ul>
+<p>As an example, if we assume that <tt class="docutils literal"><span class="pre">d</span></tt> is a deque that has been created
+and is currently empty, then Table {dequeoperations} shows the results
+of a sequence of deque operations. Note that the contents in front are
+listed on the right. It is very important to keep track of the front and
+the rear as you move items in and out of the collection as things can
+get a bit confusing.</p>
+<table border="1" class="docutils" id="tbl-dequeoperations">
+<colgroup>
+<col width="38%" />
+<col width="38%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Deque Operation</strong></th>
+<th class="head"><strong>Deque Contents</strong></th>
+<th class="head"><strong>Return Value</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">d.isEmpty()</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">[]</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">True</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">d.addRear(4)</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">[4]</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">d.addRear('dog')</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">['dog',4,]</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">d.addFront('cat')</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">['dog',4,'cat']</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">d.addFront(True)</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">['dog',4,'cat',True]</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">d.size()</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">['dog',4,'cat',True]</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">4</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">d.isEmpty()</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">['dog',4,'cat',True]</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">False</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">d.addRear(8.4)</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">[8.4,'dog',4,'cat',True]</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">d.removeRear()</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">['dog',4,'cat',True]</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">8.4</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">d.removeFront()</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">['dog',4,'cat']</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">True</span></tt></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div>Examples of Deque Operations</div></blockquote>
+</div>
+<div class="section" id="implementing-a-deque-in-python">
+<h2>Implementing a Deque in Python<a class="headerlink" href="#implementing-a-deque-in-python" title="Permalink to this headline">¶</a></h2>
+<p>As we have done in previous sections, we will create a new class for the
+implementation of the abstract data type deque. Again, the Python list
+will provide a very nice set of methods upon which to build the details
+of the deque. Our implementation (<a class="reference internal" href="#lst-dequecode"><em>Listing 1</em></a>) will assume that
+the rear of the deque is at position 0 in the list.</p>
+
+<div id="dequecode" >
+
+<br/>
+<div id="dequecode_code_div" style="display: block">
+<textarea cols="50" rows="12" id="dequecode_code" class="active_code">
+class Deque:
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self):
+        return self.items == []
+
+    def addFront(self, item):
+        self.items.append(item)
+
+    def addRear(self, item):
+        self.items.insert(0,item)
+
+    def removeFront(self):
+        return self.items.pop()
+
+    def removeRear(self):
+        return self.items.pop(0)
+
+    def size(self):
+        return len(self.items)
+</textarea>
+</div>
+<p class="ac_caption"><span class="ac_caption_text"> (dequecode)</span> </p>
+
+<button id="dequecode_runb" onclick="runit('dequecode',this, undefined);">Run</button>
+
+<div id="cont"></div>
+
+<button class="ac_opt" onclick="saveEditor('dequecode');">Save</button>
+<button class="ac_opt" onclick="requestCode('dequecode');">Load</button>
+
+<div style="text-align: center">
+<canvas id="dequecode_canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+
+<pre id="dequecode_pre" class="active_out">
+
+</pre>
+
+
+</div>
+
+<p>In <tt class="docutils literal"><span class="pre">removeFront</span></tt> we use the <tt class="docutils literal"><span class="pre">pop</span></tt> method to remove the last element
+from the list. However, in <tt class="docutils literal"><span class="pre">removeRear</span></tt>, the <tt class="docutils literal"><span class="pre">pop(0)</span></tt> method must
+remove the first element of the list. Likewise, we need to use the
+<tt class="docutils literal"><span class="pre">insert</span></tt> method (line 12) in <tt class="docutils literal"><span class="pre">addRear</span></tt> since the <tt class="docutils literal"><span class="pre">append</span></tt> method
+assumes the addition of a new element to the end of the list.</p>
+<p>The following interactive Python session shows the <tt class="docutils literal"><span class="pre">Deque</span></tt> class in
+action as we perform the sequence of operations from
+<a class="reference internal" href="#tbl-dequeoperations"><em>Table 1</em></a>.</p>
+
+<div id="deqtest" >
+
+<br/>
+<div id="deqtest_code_div" style="display: block">
+<textarea cols="50" rows="12" id="deqtest_code" class="active_code">
+d=Deque()
+print(d.isEmpty())
+d.addRear(4)
+d.addRear('dog')
+d.addFront('cat')
+d.addFront(True)
+print(d.size())
+print(d.isEmpty())
+d.addRear(8.4)
+print(d.removeRear())
+print(d.removeFront())
+</textarea>
+</div>
+<p class="ac_caption"><span class="ac_caption_text"> (deqtest)</span> </p>
+
+<button id="deqtest_runb" onclick="runit('deqtest',this, ['dequecode']);">Run</button>
+
+<div id="cont"></div>
+
+<button class="ac_opt" onclick="saveEditor('deqtest');">Save</button>
+<button class="ac_opt" onclick="requestCode('deqtest');">Load</button>
+
+<div style="text-align: center">
+<canvas id="deqtest_canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+
+<pre id="deqtest_pre" class="active_out">
+
+</pre>
+
+
+</div>
+
+<p>You can see many similarities to Python code already described for
+stacks and queues. You are also likely to observe that in this
+implementation adding and removing items from the front is O(1) whereas
+adding and removing from the rear is O(n). This is to be expected given
+the common operations that appear for adding and removing items. Again,
+the important thing is to be certain that we know where the front and
+rear are assigned in the implementation.</p>
+</div>
+<div class="section" id="palindrome-checker">
+<h2>Palindrome-Checker<a class="headerlink" href="#palindrome-checker" title="Permalink to this headline">¶</a></h2>
+<p>An interesting problem that can be easily solved using the deque data
+structure is the classic palindrome problem. A <strong>palindrome</strong> is a
+string that reads the same forward and backward, for example, <em>radar</em>,
+<em>toot</em>, and <em>madam</em>. We would like to construct an algorithm to input a
+string of characters and check whether it is a palindrome.</p>
+<p>The solution to this problem will use a deque to store the characters of
+the string. We will process the string from left to right and add each
+character to the rear of the deque. At this point, the deque will be
+acting very much like an ordinary queue. However, we can now make use of
+the dual functionality of the deque. The front of the deque will hold
+the first character of the string and the rear of the deque will hold
+the last character (see <a class="reference internal" href="#fig-palindrome"><em>Figure 2</em></a>).</p>
+<div class="figure align-center" id="fig-palindrome">
+<img alt="../_images/palindromesetup.png" src="../_images/palindromesetup.png" />
+<p class="caption">A Deque</p>
+</div>
+<p>Since we can remove both of them directly, we can compare them and
+continue only if they match. If we can keep matching first and the last
+items, we will eventually either run out of characters or be left with a
+deque of size 1 depending on whether the length of the original string
+was even or odd. In either case, the string must be a palindrome. The
+complete function for palindrome-checking appears in
+<a class="reference internal" href="#lst-palchecker"><em>Listing 2</em></a>.</p>
+
+<div id="palchecker" >
+
+<br/>
+<div id="palchecker_code_div" style="display: block">
+<textarea cols="50" rows="12" id="palchecker_code" class="active_code">
+from pythonds.basic.deque import Deque
+def palchecker(aString):
+    chardeque = Deque()
+
+    for ch in aString:
+        chardeque.addRear(ch)
+
+    stillEqual = True
+
+    while chardeque.size() > 1 and stillEqual:
+        first = chardeque.removeFront()
+        last = chardeque.removeRear()
+        if first != last:
+            stillEqual = False
+
+    return stillEqual
+
+print(palchecker("lsdkjfskf"))
+print(palchecker("radar"))
+</textarea>
+</div>
+<p class="ac_caption"><span class="ac_caption_text"> (palchecker)</span> </p>
+
+<button id="palchecker_runb" onclick="runit('palchecker',this, undefined);">Run</button>
+
+<div id="cont"></div>
+
+<button class="ac_opt" onclick="saveEditor('palchecker');">Save</button>
+<button class="ac_opt" onclick="requestCode('palchecker');">Load</button>
+
+<div style="text-align: center">
+<canvas id="palchecker_canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+
+<pre id="palchecker_pre" class="active_out">
+
+</pre>
+
+
+</div>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="linkedlists.html" title="Lists"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="queues.html" title="Queues"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>

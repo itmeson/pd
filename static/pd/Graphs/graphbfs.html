@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Breadth First Search &mdash; Python Courseware</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codelens/v3/css/ui-lightness/jquery-ui-1.8.24.custom.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/theme/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js-parsons/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.simplemodal.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/codelens/v3/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/skulpt/dist/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/js-parsons/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <link rel="top" title="Python Courseware" href="../index.html" />
+    <link rel="next" title="Depth First Search" href="graphdfs.html" />
+    <link rel="prev" title="Graphs" href="graphintro.html" />
+<script type="text/javascript">
+eBookConfig = {}
+eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000',
+eBookConfig.app = eBookConfig.host+'/runestone',
+eBookConfig.ajaxURL = eBookConfig.app+'/ajax/',
+eBookConfig.course = 'pd',
+eBookConfig.logLevel = 10,
+eBookConfig.loginRequired = true
+eBookConfig.isLoggedIn = false;
+</script>
+<script type="text/javascript" charset="utf-8" src="http://127.0.0.1:8000/runestone/static/js/jquery.idle-timer.js">
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8000/runestone/static/js/processing-1.4.1.min.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="graphdfs.html" title="Depth First Search"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="graphintro.html" title="Graphs"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <p class="logo"><a href="../index.html">
+    <img class="logo" src="../_static/logo.jpg" alt="Logo" title="Click for Main Table of Contents"/>
+  </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Breadth First Search</a><ul>
+<li><a class="reference internal" href="#the-word-ladder-problem">The Word Ladder Problem</a></li>
+<li><a class="reference internal" href="#building-the-word-ladder-graph">Building the Word Ladder Graph</a></li>
+<li><a class="reference internal" href="#implementing-breadth-first-search">Implementing Breadth First Search</a></li>
+<li><a class="reference internal" href="#breadth-first-search-analysis">Breadth First Search Analysis</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="graphintro.html"
+                        title="previous chapter">Graphs</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="graphdfs.html"
+                        title="next chapter">Depth First Search</a></p><div id="runestonebox">
+  <h3>Runestone Links</h3>
+  <ul>
+    <li> <span id="numuserspan"></span> Readers Online Now </li>
+    <li>
+      <a href="/runestone/static/pd/navhelp.html">Navigation Help</a>
+    </li>
+    <li>
+      <a href="https://github.com/bnmnetp/runestone/issues/new">Report a Problem</a>
+    </li>
+    <li>
+      <a href="http://runestoneinteractive.org">About Runestone</a>
+    </li>
+    <li>
+      <a href="/runestone/admin/index">Instructors Page</a>
+    </li>
+  </ul>
+<div class="fb-like" data-href="http://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
+<p><a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="false">Follow @iRunestone</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+</div>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="breadth-first-search">
+<h1>Breadth First Search<a class="headerlink" href="#breadth-first-search" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-word-ladder-problem">
+<h2>The Word Ladder Problem<a class="headerlink" href="#the-word-ladder-problem" title="Permalink to this headline">¶</a></h2>
+<p>To begin our study of graph algorithms let’s consider the following
+puzzle called a word ladder. Transform the word “FOOL” into the word
+“SAGE”. In a word ladder puzzle you must make the change occur gradually
+by changing one letter at a time. At each step you must transform one
+word into another word, you are not allowed to transform a word into a
+non-word. The word ladder puzzle was invented in 1878 by Lewis Carroll,
+the author of <em>Alice in Wonderland</em>. The following sequence of words
+shows one possible solution to the problem posed above.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">FOOL</span>
+<span class="n">POOL</span>
+<span class="n">POLL</span>
+<span class="n">POLE</span>
+<span class="n">PALE</span>
+<span class="n">SALE</span>
+<span class="n">SAGE</span>
+</pre></div>
+</div>
+<p>There are many variations of the word ladder puzzle. For example you
+might be given a particular number of steps in which to accomplish the
+transformation, or you might need to use a particular word. In this
+section we are interested in figuring out the smallest number of
+transformations needed to turn the starting word into the ending word.</p>
+<p>Not surprisingly, since this chapter is on graphs, we can solve this
+problem using a graph algorithm. Here is an outline of where we are
+going:</p>
+<ul class="simple">
+<li>Represent the relationships between the words as a graph.</li>
+<li>Use the graph algorithm known as breadth first search to find an
+efficient path from the starting word to the ending word.</li>
+</ul>
+</div>
+<div class="section" id="building-the-word-ladder-graph">
+<h2>Building the Word Ladder Graph<a class="headerlink" href="#building-the-word-ladder-graph" title="Permalink to this headline">¶</a></h2>
+<p>Our first problem is to figure out how to turn a large collection of
+words into a graph. What we would like is to have an edge from one word
+to another if the two words are only different by a single letter. If we
+can create such a graph, then any path from one word to another is a
+solution to the word ladder puzzle. <a class="reference internal" href="#fig-wordladder"><em>Figure 1</em></a> shows a
+small graph of some words that solve the FOOL to SAGE word ladder
+problem. Notice that the graph is an undirected graph and that the edges
+are unweighted.</p>
+<div class="figure align-center" id="fig-wordladder">
+<img alt="../_images/wordgraph.png" src="../_images/wordgraph.png" />
+<p class="caption">A Small Word Ladder Graph</p>
+</div>
+<p>We could use several different approaches to create the graph we need to
+solve this problem. Let’s start with the assumption that we have a list
+of words that are all the same length. As a starting point, we can
+create a vertex in the graph for every word in the list. To figure out
+how to connect the words, we could compare each word in the list with
+every other. When we compare we are looking to see how many letters are
+different. If the two words in question are different by only one
+letter, we can create an edge between them in the graph. For a small set
+of words that approach would work fine; however let’s suppose we have a
+list of 5,110 words. Roughly speaking, comparing one word to every other
+word on the list is an <span class="math">\(O(n^2)\)</span> algorithm. For 5,110 words,
+<span class="math">\(n^2\)</span> is more than 26&nbsp;million comparisons.</p>
+<p>We can do much better by using the following approach. Suppose that we
+have a huge number of buckets, each of them with a four-letter word on
+the outside, except that one of the letters in the label has been
+replaced by an underscore. For example, consider
+<a class="reference internal" href="#fig-wordbucket"><em>Figure 2</em></a>, we might have a bucket labeled “pop_.” As we
+process each word in our list we compare the word with each bucket,
+using the ‘_’ as a wildcard, so both “pope” and “pops” would match
+“pop_.” Every time we find a matching bucket, we put our word in that
+bucket. Once we have all the words in the appropriate buckets we know
+that all the words in the bucket must be connected.</p>
+<div class="figure align-center" id="fig-wordbucket">
+<img alt="../_images/wordbuckets.png" src="../_images/wordbuckets.png" />
+<p class="caption">Word Buckets for Words That are Different by One Letter</p>
+</div>
+<p>In Python, we can implement the scheme we have just described by using a
+dictionary. The labels on the buckets we have just described are the
+keys in our dictionary. The value stored for that key is a list of
+words. Once we have the dictionary built we can create the graph. We
+start our graph by creating a vertex for each word in the graph. Then we
+create edges between all the vertices we find for words found under the
+same key in the dictionary. The following listing shows the Python
+code required to build the graph.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="kn">import</span> <span class="n">Graph</span>
+<span class="k">def</span> <span class="nf">buildGraph</span><span class="p">(</span><span class="n">wordFile</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+    <span class="n">wfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">wordFile</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="c"># create buckets of words that differ by one letter</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">wfile</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;_&#39;</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">if</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">bucket</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">bucket</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="c"># add vertices and edges for words in the same bucket</span>
+    <span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">word1</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="n">bucket</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">word2</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="n">bucket</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">word1</span> <span class="o">!=</span> <span class="n">word2</span><span class="p">:</span>
+                    <span class="n">g</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span><span class="n">word2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">g</span>
+</pre></div>
+</div>
+<p>Since this is our first real-world graph problem, you might be wondering
+how sparse is the graph? The list of four-letter words we have for this
+problem is 5,110 words long. If we were to use an adjacency matrix, the
+matrix would have 5,110 * 5,110 = 26,112,100 cells. The graph
+constructed by the <tt class="docutils literal"><span class="pre">buildGraph</span></tt> function has exactly 53,286 edges, so
+the matrix would have only 0.20% of the cells filled! That is a very
+sparse matrix indeed.</p>
+</div>
+<div class="section" id="implementing-breadth-first-search">
+<h2>Implementing Breadth First Search<a class="headerlink" href="#implementing-breadth-first-search" title="Permalink to this headline">¶</a></h2>
+<p>With the graph constructed we can now turn our attention to the
+algorithm we will use to find the shortest solution to the word ladder
+problem. The graph algorithm we are going to use is called the “breadth
+first search” algorithm. <strong>Breadth first search</strong> (<strong>BFS</strong>) is one of
+the easiest algorithms for searching a graph. It also serves as a
+prototype for several other important graph algorithms that we will
+study later.</p>
+<p>Given a graph <span class="math">\(G\)</span> and a starting vertex <span class="math">\(s\)</span>, a breadth
+first search proceeds by exploring edges in the graph to find all the
+vertices in <span class="math">\(G\)</span> for which there is a path from <span class="math">\(s\)</span>. The
+remarkable thing about a breadth first search is that it finds <em>all</em> the
+vertices that are a distance <span class="math">\(k\)</span> from <span class="math">\(s\)</span> before it
+finds <em>any</em> vertices that are a distance <span class="math">\(k+1\)</span>. One good way to
+visualize what the breadth first search algorithm does is to imagine
+that it is building a tree, one level of the tree at a time. A breadth
+first search adds all children of the starting vertex before it begins
+to discover any of the grandchildren.</p>
+<p>To keep track of its progress, BFS colors each of the vertices white,
+gray, or black. All the vertices are initialized to white when they are
+constructed. A white vertex is an undiscovered vertex. When a vertex is
+initially discovered it is colored gray, and when BFS has completely
+explored a vertex it is colored black. This means that once a vertex is
+colored black, it has no white vertices adjacent to it. A gray node, on
+the other hand, may have some white vertices adjacent to it, indicating
+that there are still additional vertices to explore.</p>
+<p>The breadth first search algorithm shown in the listing below uses the
+adjacency list graph representation we developed earlier. In addition it uses a <tt class="docutils literal"><span class="pre">Queue</span></tt>,
+a crucial point as we will see, to decide which vertex to explore next.</p>
+<p>In addition the BFS algorithm uses an extended version of the <tt class="docutils literal"><span class="pre">Vertex</span></tt>
+class. This new vertex class adds three new instance variables:
+distance, predecessor, and color. Each of these instance variables also
+has the appropriate getter and setter methods. The code for this
+expanded Vertex class is included in the <tt class="docutils literal"><span class="pre">pythonds</span></tt> package, but we
+will not show it to you here as there is nothing new to learn by seeing
+the additional instance variables.</p>
+<p>BFS begins at the starting vertex <tt class="docutils literal"><span class="pre">s</span></tt> and colors <tt class="docutils literal"><span class="pre">start</span></tt> gray to
+show that it is currently being explored. Two other values, the distance
+and the predecessor, are initialized to 0 and <tt class="docutils literal"><span class="pre">None</span></tt> respectively for
+the starting vertex. Finally, <tt class="docutils literal"><span class="pre">start</span></tt> is placed on a <tt class="docutils literal"><span class="pre">Queue</span></tt>. The
+next step is to begin to systematically explore vertices at the front of
+the queue. We explore each new node at the front of the queue by
+iterating over its adjacency list. As each node on the adjacency list is
+examined its color is checked. If it is white, the vertex is unexplored,
+and four things happen:</p>
+<ol class="arabic simple">
+<li>The new, unexplored vertex <tt class="docutils literal"><span class="pre">nbr</span></tt>, is colored gray.</li>
+<li>The predecessor of <tt class="docutils literal"><span class="pre">nbr</span></tt> is set to the current node <tt class="docutils literal"><span class="pre">currentVert</span></tt></li>
+<li>The distance to <tt class="docutils literal"><span class="pre">nbr</span></tt> is set to the distance to <tt class="docutils literal"><span class="pre">currentVert</span> <span class="pre">+</span> <span class="pre">1</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">nbr</span></tt> is added to the end of a queue. Adding <tt class="docutils literal"><span class="pre">nbr</span></tt> to the end of
+the queue effectively schedules this node for further exploration,
+but not until all the other vertices on the adjacency list of
+<tt class="docutils literal"><span class="pre">currentVert</span></tt> have been explored.</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pythonds.graphs</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Vertex</span>
+<span class="kn">from</span> <span class="nn">pythonds.basic</span> <span class="kn">import</span> <span class="n">Queue</span>
+
+<span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">start</span><span class="p">):</span>
+  <span class="n">start</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">start</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+  <span class="n">vertQueue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+  <span class="n">vertQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">vertQueue</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">currentVert</span> <span class="o">=</span> <span class="n">vertQueue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">nbr</span> <span class="ow">in</span> <span class="n">currentVert</span><span class="o">.</span><span class="n">getConnections</span><span class="p">():</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">nbr</span><span class="o">.</span><span class="n">getColor</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;white&#39;</span><span class="p">):</span>
+        <span class="n">nbr</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">nbr</span><span class="o">.</span><span class="n">setDistance</span><span class="p">(</span><span class="n">currentVert</span><span class="o">.</span><span class="n">getDistance</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">nbr</span><span class="o">.</span><span class="n">setPred</span><span class="p">(</span><span class="n">currentVert</span><span class="p">)</span>
+        <span class="n">vertQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">nbr</span><span class="p">)</span>
+    <span class="n">currentVert</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s look at how the <tt class="docutils literal"><span class="pre">bfs</span></tt> function would construct the breadth first
+tree corresponding to the graph in <a class="reference internal" href="#fig-wordladder"><em>Figure 1</em></a>. Starting
+from fool we take all nodes that are adjacent to fool and add them to
+the tree. The adjacent nodes include pool, foil, foul, and cool. Each of
+these nodes are added to the queue of new nodes to expand.
+<a class="reference internal" href="#fig-bfs1"><em>Figure 3</em></a> shows the state of the in-progress tree along with the
+queue after this step.</p>
+<div class="figure align-center" id="fig-bfs1">
+<img alt="../_images/bfs1.png" src="../_images/bfs1.png" />
+<p class="caption">The First Step in the Breadth First Search</p>
+</div>
+<p>In the next step <tt class="docutils literal"><span class="pre">bfs</span></tt> removes the next node (pool) from the front of
+the queue and repeats the process for all of its adjacent nodes.
+However, when <tt class="docutils literal"><span class="pre">bfs</span></tt> examines the node cool, it finds that the color of
+cool has already been changed to gray. This indicates that there is a
+shorter path to cool and that cool is already on the queue for further
+expansion. The only new node added to the queue while examining pool is
+poll. The new state of the tree and queue is shown in <a class="reference internal" href="#fig-bfs2"><em>Figure 4</em></a>.</p>
+<div class="figure align-center" id="fig-bfs2">
+<img alt="../_images/bfs2.png" src="../_images/bfs2.png" />
+<p class="caption">The Second Step in the Breadth First Search</p>
+</div>
+<p>The next vertex on the queue is foil. The only new node that foil can
+add to the tree is fail. As <tt class="docutils literal"><span class="pre">bfs</span></tt> continues to process the queue,
+neither of the next two nodes add anything new to the queue or the tree.
+<a class="reference internal" href="#fig-bfs3"><em>Figure 5</em></a> shows the tree and the queue after expanding all the
+vertices on the second level of the tree.</p>
+<div class="figure align-center" id="fig-bfs3">
+<img alt="../_images/bfs3.png" src="../_images/bfs3.png" />
+<p class="caption">Breadth First Search Tree After Completing One Level</p>
+</div>
+<div class="figure align-center" id="fig-bfsdone">
+<img alt="../_images/bfsDone.png" src="../_images/bfsDone.png" />
+<p class="caption">Final Breadth First Search Tree</p>
+</div>
+<p>You should continue to work through the algorithm on your own so that
+you are comfortable with how it works. <a class="reference internal" href="#fig-bfsdone"><em>Figure 6</em></a> shows the
+final breadth first search tree after all the vertices in
+<a class="reference internal" href="#fig-wordladder"><em>Figure 3</em></a> have been expanded. The amazing thing about the
+breadth first search solution is that we have not only solved the
+FOOL–SAGE problem we started out with, but we have solved many other
+problems along the way. We can start at any vertex in the breadth first
+search tree and follow the predecessor arrows back to the root to find
+the shortest word ladder from any word back to fool. The function below shows how to follow the predecessor links to
+print out the word ladder.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">getPred</span><span class="p">()):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">getPred</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">getId</span><span class="p">())</span>
+
+<span class="n">traverse</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">getVertex</span><span class="p">(</span><span class="s">&#39;sage&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="breadth-first-search-analysis">
+<h2>Breadth First Search Analysis<a class="headerlink" href="#breadth-first-search-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Before we continue with other graph algorithms let us analyze the run
+time performance of the breadth first search algorithm. The first thing
+to observe is that the while loop is executed,
+at most, one time for each vertex in the graph <span class="math">\(|V|\)</span>. You can
+see that this is true because a vertex must be white before it can be
+examined and added to the queue. This gives us <span class="math">\(O(V)\)</span> for the
+while loop. The for loop, which is nested inside the while is executed at most once for each edge in the graph,
+<span class="math">\(|E|\)</span>. The reason is that every vertex is dequeued at most once
+and we examine an edge from node <span class="math">\(u\)</span> to node <span class="math">\(v\)</span> only
+when node <span class="math">\(u\)</span> is dequeued. This gives us <span class="math">\(O(E)\)</span> for the
+for loop. combining the two loops gives us <span class="math">\(O(V + E)\)</span>.</p>
+<p>Of course doing the breadth first search is only part of the task.
+Following the links from the starting node to the goal node is the other
+part of the task. The worst case for this would be if the graph was a
+single long chain. In this case traversing through all of the vertices
+would be <span class="math">\(O(V)\)</span>. The normal case is going to be some fraction of
+<span class="math">\(|V|\)</span> but we would still write <span class="math">\(O(V)\)</span>.</p>
+<p>Finally, at least for this problem, there is the time required to build
+the initial graph. We leave the analysis of the <tt class="docutils literal"><span class="pre">buildGraph</span></tt> function
+as an exercise for you.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="graphdfs.html" title="Depth First Search"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="graphintro.html" title="Graphs"
+             >previous</a> |</li>
+        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+<li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
+
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Brad Miller, David Ranum.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter)
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+</script>
+
+
+
+
+  </body>
+</html>
