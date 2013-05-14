@@ -1,11 +1,12 @@
-Runestone Interactive Tools and Content
-=======================================
+Practical Discrete, using Runestone
+===================================
 
-Important Notice
-----------------
+This is a copy of the Runestone Interactive textbooks, which I am using as a template for a new textbook on discrete mathematics, aimed at high school / college students.  The only mathematical prerequisite for the book is algebra.
 
-This is the consolidated repository for all work related to our interactive textbook project.  If you were using the
-thinkcspy repository and the eBookExtensions repository you will find all of that work here.  Thanks.
+At the moment, very nearly 100% of the material in this repo was written by the Runestone group.  I plan to slowly trim away the material from their books as I learn how to use their authoring tools, with a final result being the one interactive textbook, and runestone, sphinx, etc. as submodules.
+
+All of the Runestone material is under a GNU Free Documentation license.  All of the Practical Discrete material is also under a GNU Free Documentation license.
+
 
 Dependencies
 ------------
