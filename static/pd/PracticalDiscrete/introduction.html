@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The Way of the Proof &mdash; Python Courseware</title>
+    <title>The Way of the Proof &mdash; Practically Discrete</title>
     
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.0',
+        VERSION:     '0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -61,8 +61,8 @@
     <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
     <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
     <script type="text/javascript" src="../_static/user-highlights.js"></script>
-    <link rel="top" title="Python Courseware" href="../index.html" />
-    <link rel="next" title="The Way of the Program" href="../GeneralIntro/introduction.html" />
+    <link rel="top" title="Practically Discrete" href="../index.html" />
+    <link rel="next" title="But How do You Know?" href="proof.html" />
     <link rel="prev" title="Practically Discrete" href="../index.html" />
 <script type="text/javascript">
 eBookConfig = {}
@@ -96,12 +96,12 @@ eBookConfig.isLoggedIn = false;
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../GeneralIntro/introduction.html" title="The Way of the Program"
+          <a href="proof.html" title="But How do You Know?"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../index.html" title="Practically Discrete"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+        <li><a href="../index.html">Practically Discrete</a> &raquo;</li>
 <li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
 
       </ul>
@@ -138,8 +138,8 @@ eBookConfig.isLoggedIn = false;
   <p class="topless"><a href="../index.html"
                         title="previous chapter">Practically Discrete</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../GeneralIntro/introduction.html"
-                        title="next chapter">The Way of the Program</a></p><div id="runestonebox">
+  <p class="topless"><a href="proof.html"
+                        title="next chapter">But How do You <em>Know</em>?</a></p><div id="runestonebox">
   <h3>Runestone Links</h3>
   <ul>
     <li> <span id="numuserspan"></span> Readers Online Now </li>
@@ -190,7 +190,7 @@ eBookConfig.isLoggedIn = false;
 &#8220;So, what do you do?&#8221;  &#8220;I&#8217;m a physicist. I teach physics and math
 at a university,&#8221; I say, and then I pause, because just about every
 time, the reaction is the same: &#8220;Oooo &#8212; you must be very smart.  I
-was emph{terrible} at that.&#8221;  And since I&#8217;m a slightly awkward geek,
+was <em>terrible</em> at that.&#8221;  And since I&#8217;m a slightly awkward geek,
 I stammer out my assurances that I&#8217;m not that smart, and I
 commiserate about how difficult the high school/college versions of
 science or math classes usually are.</p>
@@ -222,33 +222,33 @@ car) is behind one of them.  There are goats behind the other two.  So
 you select one of the doors.</p>
 <p>Now stop right there for a moment, and think about the choice you just
 made.  What is the probability that you were right on your first
-guess?  Don&#8217;t click on the &#8220;Submit&#8221; link below until you are
+guess?  Don&#8217;t click on the &#8220;Check Me&#8221; link below until you are
 satisfied that you have an answer.</p>
 
-            <div id="question_montyhall">
-            <p>.montyhall: 
+            <div id="question_1">
+            <p>.1: 
 </p>
-            <form name="question_montyhall_form" method="get" action="" onsubmit="return false;">
+            <form name="question_1_form" method="get" action="" onsubmit="return false;">
             
-            <input type="radio" name="group1" value="a" id="question_montyhall_opt_a" />
-            <label for= "question_montyhall_opt_a">  a) 0/3</label><br />
+            <input type="radio" name="group1" value="a" id="question_1_opt_a" />
+            <label for= "question_1_opt_a">  a) 0/3</label><br />
             
-            <input type="radio" name="group1" value="b" id="question_montyhall_opt_b" />
-            <label for= "question_montyhall_opt_b">  b) 1/3</label><br />
+            <input type="radio" name="group1" value="b" id="question_1_opt_b" />
+            <label for= "question_1_opt_b">  b) 1/3</label><br />
             
-            <input type="radio" name="group1" value="c" id="question_montyhall_opt_c" />
-            <label for= "question_montyhall_opt_c">  c) 2/3</label><br />
+            <input type="radio" name="group1" value="c" id="question_1_opt_c" />
+            <label for= "question_1_opt_c">  c) 2/3</label><br />
             
-            <input type="radio" name="group1" value="d" id="question_montyhall_opt_d" />
-            <label for= "question_montyhall_opt_d">  d) 3/3</label><br />
+            <input type="radio" name="group1" value="d" id="question_1_opt_d" />
+            <label for= "question_1_opt_d">  d) 3/3</label><br />
             
             <script>
-            $(document).ready(function(){checkRadio('question_montyhall');});
+            $(document).ready(function(){checkRadio('question_1');});
             </script>
             <input type="button" name="do answer" 
-            value="Check Me" onclick="checkMCMFStorage('question_montyhall','b',['There are three doors.  How many of them have a prize?', 'There are three doors.  How many of them have a prize?', 'There are three doors.  How many of them have a prize?', 'There are three doors.  How many of them have a prize?'])"/> 
+            value="Check Me" onclick="checkMCMFStorage('question_1','b',['There are three doors.  How many of them have a prize?', 'There are three doors.  How many of them have a prize?', 'There are three doors.  How many of them have a prize?', 'There are three doors.  How many of them have a prize?'])"/> 
             </form>
-            <div id="question_montyhall_feedback">
+            <div id="question_1_feedback">
             </div>
             </div>
             <p>But now, like any good game show host, I&#8217;m going to throw you a
@@ -1473,19 +1473,19 @@ analogous to a word in a natural language.</dd>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../GeneralIntro/introduction.html" title="The Way of the Program"
+          <a href="proof.html" title="But How do You Know?"
              >next</a> |</li>
         <li class="right" >
           <a href="../index.html" title="Practically Discrete"
              >previous</a> |</li>
-        <li><a href="../index.html">Python Courseware</a> &raquo;</li>
+        <li><a href="../index.html">Practically Discrete</a> &raquo;</li>
 <li class="right"><span class="loginout"><a href="/runestone/default/user/logout">logout</a></span>| </li>
 
       </ul>
     </div>
 
     <div class="footer">
-        &copy; Copyright 2012, Brad Miller, David Ranum.
+        &copy; Copyright 2013, Mark Betnel.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 

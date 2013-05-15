@@ -28,7 +28,7 @@ Every time I introduce myself at a party, my new acquaintance asks,
 "So, what do you do?"  "I'm a physicist. I teach physics and math
 at a university," I say, and then I pause, because just about every
 time, the reaction is the same: "Oooo --- you must be very smart.  I
-was \emph{terrible} at that."  And since I'm a slightly awkward geek,
+was *terrible* at that."  And since I'm a slightly awkward geek,
 I stammer out my assurances that I'm not that smart, and I
 commiserate about how difficult the high school/college versions of
 science or math classes usually are. 
@@ -67,11 +67,11 @@ you select one of the doors.
 
 Now stop right there for a moment, and think about the choice you just
 made.  What is the probability that you were right on your first
-guess?  Don't click on the "Submit" link below until you are
+guess?  Don't click on the "Check Me" link below until you are
 satisfied that you have an answer.
 
 
-.. mchoicemf:: question_montyhall
+.. mchoicemf:: question_1
    :answer_a: 0/3
    :answer_b: 1/3
    :answer_c: 2/3
