@@ -170,6 +170,51 @@ eBookConfig.isLoggedIn = false;
 <span id="counting-stuff"></span><h1>How many are there?<a class="headerlink" href="#how-many-are-there" title="Permalink to this headline">¶</a></h1>
 <p>How many different ways are there to...</p>
 <p id="index-0">TEXT</p>
+
+<div id="ch04_1" >
+
+<br/>
+<div id="ch04_1_code_div" style="display: block">
+<textarea cols="50" rows="12" id="ch04_1_code" class="active_code">
+import turtle
+
+def drawSquare(t, sz):
+    """Make turtle t draw a square of with side sz."""
+
+    for i in range(4):
+        t.forward(sz)
+        t.left(90)
+
+
+wn = turtle.Screen()              # Set up the window and its attributes
+wn.bgcolor("lightgreen")
+
+alex = turtle.Turtle()            # create alex
+drawSquare(alex, 50)             # Call the function to draw the square
+
+wn.exitonclick()
+</textarea>
+</div>
+<p class="ac_caption"><span class="ac_caption_text"> (ch04_1)</span> </p>
+
+<button id="ch04_1_runb" onclick="runit('ch04_1',this, undefined);">Run</button>
+
+<div id="cont"></div>
+
+<button class="ac_opt" onclick="saveEditor('ch04_1');">Save</button>
+<button class="ac_opt" onclick="requestCode('ch04_1');">Load</button>
+
+<div style="text-align: center">
+<canvas id="ch04_1_canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+
+<pre id="ch04_1_pre" class="active_out">
+
+</pre>
+
+
+</div>
+
 <div class="section" id="glossary">
 <h2>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h2>
 <dl class="glossary docutils">
